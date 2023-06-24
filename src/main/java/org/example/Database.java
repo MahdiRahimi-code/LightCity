@@ -11,8 +11,8 @@ public class Database {
     static final String DB_URL = "jdbc:mysql://localhost/lightcity";
 
     // Database credentials
-    static final String USER = "your_username";
-    static final String PASS = "your_password";
+    static final String USER = "root";
+    static final String PASS = "qwerty";
 
 
     private Connection conn;
