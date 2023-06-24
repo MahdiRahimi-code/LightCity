@@ -23,6 +23,7 @@ public class Industry extends Property{
         this.income = income;
         startPaySalary();
         ID++;
+        IndustryID=ID;
     }
 
     public String getTitle() {

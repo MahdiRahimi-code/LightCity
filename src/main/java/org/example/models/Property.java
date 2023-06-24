@@ -4,11 +4,15 @@ public class Property {
     private float[] scales;
     private float[] coordinate;
     private Character owner ;
+    private static int ID = 0;
+    private int PropertyID;
 
     public Property(float[] scales, float[] coordinate, Character owner) {
         this.scales = scales;
         this.coordinate = coordinate;
         this.owner = owner;
+        ID++;
+        PropertyID=ID;
     }
 
     public float[] getScales() {
@@ -33,5 +37,9 @@ public class Property {
 
     public void setCoordinate(float[] coordinate) {
         this.coordinate = coordinate;
+    }
+
+    public int getPropertyID() {
+        return PropertyID;
     }
 }

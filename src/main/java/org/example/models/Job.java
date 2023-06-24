@@ -4,6 +4,8 @@ public class Job {
     private String title;
     private float income;
     private String industryId;
+    private static int ID = 0;
+    private int JobID ;
 
     /**
      * @param title : Industry title
@@ -14,6 +16,8 @@ public class Job {
         this.title = title;
         this.income = income;
         this.industryId = industryId;
+        ID++;
+        JobID=ID;
     }
 
     public String getTitle() {
@@ -38,5 +42,9 @@ public class Job {
 
     public void setIndustryId(String industryId) {
         this.industryId = industryId;
+    }
+
+    public int getJobID() {
+        return JobID;
     }
 }
