@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+=======
+>>>>>>> origin/Mahdi
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -11,6 +20,10 @@ target/
 *.iws
 *.iml
 *.ipr
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Mahdi
+>>>>>>> origin/Mahdi
 
 ### Eclipse ###
 .apt_generated
@@ -20,6 +33,15 @@ target/
 .settings
 .springBeans
 .sts4-cache
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+=======
+>>>>>>> origin/Mahdi
+>>>>>>> origin/Mahdi
 
 ### NetBeans ###
 /nbproject/private/
@@ -27,9 +49,18 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
+<<<<<<< HEAD
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+=======
+<<<<<<< HEAD
+=======
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+>>>>>>> origin/Mahdi
+>>>>>>> origin/Mahdi
 
 ### VS Code ###
 .vscode/

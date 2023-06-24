@@ -7,11 +7,15 @@ public class Life {
     private float food;
     private float water;
     private float sleep;
+    private static int ID = 0;
+    private int LifeID;
 
     public Life(){
         food = 100.0f;
         water=100.0f;
         sleep=100.0f;
+        ID++;
+        LifeID=ID;
     }
 
     public Life(float food, float water, float sleep) {
@@ -19,6 +23,8 @@ public class Life {
         this.water = water;
         this.sleep = sleep;
         startConsuming();
+        ID++;
+        LifeID=ID;
     }
 
     public float getFood() {
@@ -88,5 +94,9 @@ public class Life {
         } else {
             System.out.println("Not enough sleep!");
         }
+    }
+
+    public int getLifeID() {
+        return LifeID;
     }
 }

@@ -12,6 +12,8 @@ public class Character implements CharacterInterface {
 
     private Job job;
     private ArrayList<Property> properties;
+    private static int ID = 0;
+    private int characterID;
 
     private Property inPosition;
 
@@ -22,6 +24,8 @@ public class Character implements CharacterInterface {
         this.job = job;
         this.properties = properties;
         this.inPosition = inPosition;
+        ID++;
+        characterID=ID;
     }
 
     public User getUserInfo() {
@@ -72,5 +76,9 @@ public class Character implements CharacterInterface {
     @Override
     public void positionProcessing() {
 
+    }
+
+    public int getCharacterID() {
+        return characterID;
     }
 }

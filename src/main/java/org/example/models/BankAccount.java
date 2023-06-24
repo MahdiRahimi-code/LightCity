@@ -9,6 +9,8 @@ public class BankAccount {
     private String password;
     private float money;
     private Date lastChange;
+    private static int ID = 0;
+    private int bankAccountID;
 
     private String logs = "";
 
@@ -17,6 +19,8 @@ public class BankAccount {
         this.password = password;
         this.money = money;
         this.lastChange = lastChange;
+        ID++;
+        bankAccountID=ID;
     }
 
     public String getOwner() {
@@ -68,5 +72,9 @@ public class BankAccount {
             return true;
         }
         return false;
+    }
+
+    public int getBankAccountID() {
+        return bankAccountID;
     }
 }

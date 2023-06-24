@@ -3,6 +3,13 @@ package org.example.defualtSystem;
 public class BankTurnover {
     private double withdraw  = 0;
     private double deposit = 0;
+    private static int ID =0;
+    private int bankTurnOverID;
+    public BankTurnover(double withdraw, double deposit){
+        this.deposit=deposit;
+        this.withdraw=withdraw;
+        ID++;
+    }
 
     /**
      * @param amount : Money amount
@@ -16,5 +23,9 @@ public class BankTurnover {
     }
     public double calcTurnover(){
         return deposit-withdraw;
+    }
+
+    public int getBankTurnOverID() {
+        return bankTurnOverID;
     }
 }
