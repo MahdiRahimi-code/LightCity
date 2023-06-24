@@ -6,6 +6,8 @@ import java.util.List;
 public class Industry extends Property{
     private String title;
     private float income;
+    private static int ID =0;
+    private int IndustryID;
 
     protected ArrayList<Employee> employees = new ArrayList<>();
 
@@ -20,6 +22,7 @@ public class Industry extends Property{
         this.title = title;
         this.income = income;
         startPaySalary();
+        ID++;
     }
 
     public String getTitle() {
@@ -61,5 +64,9 @@ public class Industry extends Property{
            }
         });
         thread.start();
+    }
+
+    public int getIndustryID() {
+        return IndustryID;
     }
 }
