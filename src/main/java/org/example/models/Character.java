@@ -9,7 +9,6 @@ public class Character implements CharacterInterface {
     private User userInfo;
     private BankAccount account;
     private Life life;
-
     private Job job;
     private ArrayList<Property> properties;
     private static int ID = 0;
