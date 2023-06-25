@@ -1,6 +1,9 @@
 package org.example;
 
+import org.example.models.Character;
+import org.example.models.Industry;
 import org.example.models.User;
+import org.example.models.Property;
 
 import java.util.Scanner;
 
@@ -18,9 +21,11 @@ public class Menu {
            joinServer();
        }else if (next.equals("4"))
            System.exit(0);
+
+        userMenu(loginMenu());
     }
 
-    public static void userMenu(){
+    public static void userMenu(User user){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("1 : Go to");
@@ -31,7 +36,7 @@ public class Menu {
         int awnser = scanner.nextInt();
 
         if (awnser == 1){
-
+            goTo(user);
         } else if (awnser == 2) {
 
         } else if (awnser == 3) {
@@ -42,6 +47,8 @@ public class Menu {
             showMenu();
         }
     }
+
+
 
     public static void mainMenu(){
         System.out.println("1 : continue game");
@@ -67,6 +74,56 @@ public class Menu {
         System.out.print("Enter Server Port :");
         int port = scanner.nextInt();
         game.joinServer(ip,port);
+    }
+
+    private static void goTo(User user){
+        Scanner in = new Scanner(System.in);
+        Character i = null;
+        for (Character x : Data.characters) {
+            if(x.getUserInfo().equals(user)){
+                i = x;
+                break;
+            }
+        }
+        if (i == null){
+            System.out.println("Character is not found");
+        }
+
+
+
+    }
+
+    private static Industry searchByTitle(String title){
+        Industry k = null;
+        for (Industry x : Data.industries) {
+            if(x.getTitle().equals(title)){
+                k = x;
+                break;
+            }
+        }
+        return k;
+    }
+
+    private static Property searchByID(int id){
+        Property k = null ;
+        for (Property x : Data.properties) {
+            if (x.getPropertyID() == id){
+                k = x;
+                break;
+            }
+        }
+        return k;
+    }
+
+    private static Property searchByLocation(float x , float y){
+        Property k = null;
+        for (Property w : Data.properties) {
+            if(x<=w.getCoordinate()[0] && w.getCoordinate()[0]+w.getScales()[0]>=x && y<=w.getCoordinate()[1] && w.getScales()[1]+w.getCoordinate()[1]>=y){
+                k = w;
+                break;
+            }
+        }
+        return k;
     }
 
     public static void main(String[] args) {
