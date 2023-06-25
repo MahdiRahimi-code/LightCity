@@ -13,6 +13,20 @@ public class Game implements GameInterface {
     private City city;
     @Override
     public void continueGame(User user) {
+        for (User i :Data.users) {
+            if(user.getUsername().equals(i.getUsername())){
+                if(user.getPassword().equals(i.getPassword())){
+                    System.out.println("Welcome to the Game");
+                }
+                else{
+                    System.out.println("Your Password is incorrect");
+                }
+
+            }
+            else{
+                System.out.println("UserName is not found");
+            }
+        }
     }
 
 /** Create new city and Generate new Character

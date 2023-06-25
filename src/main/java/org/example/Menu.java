@@ -20,12 +20,22 @@ public class Menu {
            System.exit(0);
     }
     public static void mainMenu(){
-//        show menu : sout ()
+        System.out.println("Welcome to the Lightcity");
+        System.out.println("Select");
+        System.out.println("1.Continue");
+        System.out.println("2.Start New Game");
+        System.out.println("3.Join Server");
+        System.out.println("4.Exit");
     }
 
     public static User loginMenu(){
-//       get user info : username, password
-        return null;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your UserName:");
+        String username = scanner.nextLine();
+        System.out.println("Enter your Password");
+        String password = scanner.nextLine();
+        User x = new User(username , password);
+        return x;
     }
 
     private static void joinServer(){
