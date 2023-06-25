@@ -8,12 +8,8 @@ public class Menu {
     private static Game game = new Game();
     private static Scanner scanner = new Scanner(System.in);
     public static void showMenu(){
-       System.out.println("1 : continue game");
-       System.out.println("2 : start new game");
-       System.out.println("3 : join server");
-       System.out.println("4 : exit");
+       mainMenu();
        String next = scanner.next();
-
         if (next.equals("1")) {
            game.continueGame(loginMenu());
        }else if(next.equals("2")){
@@ -25,11 +21,10 @@ public class Menu {
     }
 
     public static void mainMenu(){
-        //1 : Go to
-        //2 : process location
-        //3 : Dashboard
-        //4 : life
-        //5 : Exit
+        System.out.println("1 : Continue Game");
+        System.out.println("2 : Start New Game");
+        System.out.println("3 : Join server");
+        System.out.println("4 : Exit");
     }
 
     public static User loginMenu(){

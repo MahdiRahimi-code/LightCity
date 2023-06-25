@@ -31,7 +31,6 @@ public class Game implements GameInterface {
                 city.joinCharacter(user);
                 Data.cities.add(city);
                 Database.WriteData();
-                Menu.mainMenu();
             }
             else{
 
