@@ -1,5 +1,7 @@
 package org.example.models;
 
+import org.example.Data;
+
 public class User {
     private static int ID = 0;
     private String username;

@@ -28,7 +28,9 @@ public class Database {
 
             ResultSet user = stmt.executeQuery("SELECT * FROM user");
             while (user.next()){
-                Data.users.add(new User(user.getString("Username"), user.getString("Password")));
+                String userString = user.getString("Password");
+                String[] parts = userString.split("@");
+                Data.users.add(new User(user.getString("Username"), parts[0]));
             }
 
             ResultSet job = stmt.executeQuery("SELECT * FROM job");
@@ -71,7 +73,7 @@ public class Database {
         }
     }
 
-    public static void WriteData() throws SQLException {
+    public static void WriteData(){
         try {
             conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lightcity", "root", "M13831383mR");
 
@@ -88,7 +90,8 @@ public class Database {
 
                 preparedStatement.setInt(1, u.getUserID());
                 preparedStatement.setString(2, u.getUsername());
-                preparedStatement.setString(3, u.getPassword());
+                String encryptedPassword = u.getPassword().concat("@password");
+                preparedStatement.setString(3,encryptedPassword);
 
             }
 

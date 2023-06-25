@@ -10,7 +10,12 @@ public class Menu {
     public static void showMenu(){
        mainMenu();
        String next = scanner.next();
-       if (next.equals("1")) {
+       System.out.println("1 : continue game");
+       System.out.println("2 : start new game");
+       System.out.println("3 : join server");
+       System.out.println("4 : exit");
+
+        if (next.equals("1")) {
            game.continueGame(loginMenu());
        }else if(next.equals("2")){
            game.startGame(loginMenu());
@@ -19,23 +24,14 @@ public class Menu {
        }else if (next.equals("4"))
            System.exit(0);
     }
+
     public static void mainMenu(){
-        System.out.println("Welcome to the Lightcity");
-        System.out.println("Select");
-        System.out.println("1.Continue");
-        System.out.println("2.Start New Game");
-        System.out.println("3.Join Server");
-        System.out.println("4.Exit");
+//        show menu : sout ()
     }
 
     public static User loginMenu(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your UserName:");
-        String username = scanner.nextLine();
-        System.out.println("Enter your Password");
-        String password = scanner.nextLine();
-        User x = new User(username , password);
-        return x;
+//       get user info : username, password
+        return null;
     }
 
     private static void joinServer(){
@@ -45,6 +41,7 @@ public class Menu {
         int port = scanner.nextInt();
         game.joinServer(ip,port);
     }
+
     public static void main(String[] args) {
             showMenu();
     }

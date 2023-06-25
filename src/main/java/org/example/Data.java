@@ -2,27 +2,27 @@ package org.example;
 
 import org.example.defualtSystem.*;
 import org.example.models.*;
+import org.example.models.Character;
 
-import java.lang.Character;
 import java.util.ArrayList;
 
 
 public class Data {
-    static ArrayList<Bank> banks =new ArrayList<>();
-    static ArrayList<BankTurnover> bankTurnovers = new ArrayList<>();
-    static ArrayList<FastFoodShop> fastFoodShops = new ArrayList<>();
-    static ArrayList<Life> lives = new ArrayList<>();
-    static ArrayList<Municipality> municipalities = new ArrayList<>();
-    static ArrayList<StockMarket> stockMarkets = new ArrayList<>();
-    static ArrayList<BankAccount> bankAccounts = new ArrayList<>();
-    static ArrayList<Character> characters = new ArrayList<>();
-    static ArrayList<City> cities =new ArrayList<>();
-    static ArrayList<Employee> employees = new ArrayList<>();
-    static ArrayList<Food> foods = new ArrayList<>();
-    static ArrayList<Industry> industries = new ArrayList<>();
-    static ArrayList<Job> jobs = new ArrayList<>();
-    static ArrayList<Liquid> liquids= new ArrayList<>();
-    static ArrayList<Property> properties = new ArrayList<>();
-    static ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<Bank> banks =new ArrayList<>();
+    public static ArrayList<BankTurnover> bankTurnovers = new ArrayList<>();
+    public static ArrayList<FastFoodShop> fastFoodShops = new ArrayList<>();
+    public static ArrayList<Life> lives = new ArrayList<>();
+    public static ArrayList<Municipality> municipalities = new ArrayList<>();
+    public static ArrayList<StockMarket> stockMarkets = new ArrayList<>();
+    public static ArrayList<BankAccount> bankAccounts = new ArrayList<>();
+    public static ArrayList<Character> characters = new ArrayList<>();
+    public static ArrayList<City> cities =new ArrayList<>();
+    public static ArrayList<Employee> employees = new ArrayList<>();
+    public static ArrayList<Food> foods = new ArrayList<>();
+    public static ArrayList<Industry> industries = new ArrayList<>();
+    public static ArrayList<Job> jobs = new ArrayList<>();
+    public static ArrayList<Liquid> liquids= new ArrayList<>();
+    public static ArrayList<Property> properties = new ArrayList<>();
+    public static ArrayList<User> users = new ArrayList<>();
 
 }

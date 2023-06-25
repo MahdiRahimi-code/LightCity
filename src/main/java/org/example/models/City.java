@@ -1,12 +1,12 @@
 package org.example.models;
 
+import org.example.Data;
 import org.example.defualtSystem.Bank;
 import org.example.defualtSystem.Life;
 import org.example.defualtSystem.Municipality;
 import org.example.defualtSystem.StockMarket;
 import org.example.interfaces.CityInterface;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -17,7 +17,6 @@ public class City implements CityInterface {
     private final Municipality municipality;
 
     private final StockMarket stockMarket;
-
     private Character root;
 
     public City() {
@@ -33,6 +32,7 @@ public class City implements CityInterface {
     public void joinCharacter(User userinfo) {
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
         Character character = new Character(userinfo, newAccount, new Life(), null, null, null);
+        Data.characters.add(character);
         characters.add(character);
         beginGame(character);
     }
