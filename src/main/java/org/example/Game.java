@@ -15,6 +15,29 @@ public class Game implements GameInterface {
     private City city;
     @Override
     public void continueGame(User user) {
+        Database.ReadData();
+        boolean isFound = false;
+        for (User i : Data.users){
+            if (i.getUsername().compareTo(user.getUsername())==0 && i.getPassword().compareTo(user.getPassword())==0){
+                isFound=true;
+                break;
+            }
+        }
+        if (isFound) {
+            System.out.println("User found");
+            if (Data.cities.isEmpty()){
+                System.out.println("No city is created...Entering new city");
+                generateNewCity();
+                city.joinCharacter(user);
+                Data.cities.add(city);
+            }
+            else{
+
+            }
+        }else {
+            System.out.println("User not found");
+            Menu.showMenu();
+        }
     }
 
 /** Create new city and Generate new Character

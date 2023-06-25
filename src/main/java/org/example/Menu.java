@@ -26,12 +26,22 @@ public class Menu {
     }
 
     public static void mainMenu(){
-//        show menu : sout ()
+        //1 : Go to
+        //2 : process location
+        //3 : Dashboard
+        //4 : life
+        //5 : Exit
     }
 
     public static User loginMenu(){
-//       get user info : username, password
-        return null;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your username : ");
+        String username = scanner.next();
+        System.out.println("Enter your password : ");
+        String password = scanner.next();
+
+        User user = new User(username, password);
+        return user;
     }
 
     private static void joinServer(){
