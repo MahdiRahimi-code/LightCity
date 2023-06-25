@@ -15,11 +15,11 @@ public class Bank extends Industry implements BankInterface {
 
     private Manager manager = null;
 
-    public static  BankTurnover turnover;
+    public static BankTurnover turnover;
 
     public Bank(Property property,Character root) {
         super("Bank",property,root,100.0f);
-        turnover = new BankTurnover();
+//        turnover = new BankTurnover();
     }
 
     public BankAccount newAccount(String username,String password){

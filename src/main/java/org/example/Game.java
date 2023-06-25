@@ -30,6 +30,8 @@ public class Game implements GameInterface {
                 generateNewCity();
                 city.joinCharacter(user);
                 Data.cities.add(city);
+                Database.WriteData();
+                Menu.mainMenu();
             }
             else{
 
