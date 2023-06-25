@@ -2,14 +2,14 @@ package org.example.models;
 
 public class Employee {
     private String username;
-    private float baseSalary ;
+    private float baseSalary;
     private int level;
 
     private BankAccount bankAccount;
 
     private Industry industry;
 
-    public Employee(String username,Industry industry, float baseSalary,BankAccount bankAccount) {
+    public Employee(String username, Industry industry, float baseSalary, BankAccount bankAccount) {
         this.username = username;
         this.baseSalary = baseSalary;
         this.industry = industry;
@@ -41,7 +41,7 @@ public class Employee {
         this.level = level;
     }
 
-    public void paySalary(){
-        bankAccount.deposit(industry.getOwner(),level*baseSalary);
+    public void paySalary() {
+        bankAccount.deposit(industry.getOwner(), level * baseSalary);
     }
 }

@@ -8,7 +8,7 @@ public class Food {
 
     public boolean available = true;
 
-    public Food(String title,float food,float water) {
+    public Food(String title, float food, float water) {
         this.food = food;
         this.water = water;
         this.title = title;

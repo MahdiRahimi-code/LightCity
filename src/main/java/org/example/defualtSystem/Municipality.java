@@ -9,14 +9,14 @@ import java.util.ArrayList;
 public class Municipality implements MunicipalityInterface {
     private ArrayList<Property> properties;
 
-    public  Municipality(){
+    public Municipality() {
         generateProperties();
     }
 
     private void generateProperties() {
-        for (int i=0;i<7;i++) {
+        for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
-                Property property = new Property(new float[]{7, 14}, new float[]{7*i,16*j},null);
+                Property property = new Property(new float[] { 7, 14 }, new float[] { 7 * i, 16 * j }, null);
                 properties.add(property);
                 Data.properties.add(property);
             }
@@ -35,11 +35,11 @@ public class Municipality implements MunicipalityInterface {
 
     @Override
     public void showProperties() {
-        for (Property p : properties){
+        for (Property p : properties) {
             System.out.println("ID : " + p.getPropertyID());
-            System.out.println("owner : "+ p.getOwner());
+            System.out.println("owner : " + p.getOwner());
             System.out.println("scales : " + p.getScales());
-            System.out.println("coordinates : "+ p.getCoordinate());
+            System.out.println("coordinates : " + p.getCoordinate());
         }
     }
 }

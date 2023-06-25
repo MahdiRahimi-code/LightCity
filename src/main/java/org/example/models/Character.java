@@ -15,7 +15,8 @@ public class Character implements CharacterInterface {
     private int characterID;
     private Property inPosition;
 
-    public Character(User userInfo, BankAccount account, Life life, Job job, ArrayList<Property> properties, Property inPosition) {
+    public Character(User userInfo, BankAccount account, Life life, Job job, ArrayList<Property> properties,
+            Property inPosition) {
         this.userInfo = userInfo;
         this.account = account;
         this.life = life;
@@ -23,7 +24,7 @@ public class Character implements CharacterInterface {
         this.properties = properties;
         this.inPosition = inPosition;
         ID++;
-        characterID=ID;
+        characterID = ID;
     }
 
     public User getUserInfo() {
@@ -58,8 +59,9 @@ public class Character implements CharacterInterface {
         this.job = job;
     }
 
-    public void gotToLocation(Property destination){
-        if(destination==null)return;
+    public void gotToLocation(Property destination) {
+        if (destination == null)
+            return;
         inPosition = destination;
     }
 

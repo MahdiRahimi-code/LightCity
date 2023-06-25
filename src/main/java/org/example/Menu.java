@@ -10,22 +10,23 @@ import java.util.Scanner;
 public class Menu {
     private static Game game = new Game();
     private static Scanner scanner = new Scanner(System.in);
-    public static void showMenu(){
+
+    public static void showMenu() {
         mainMenu();
-       String next = scanner.next();
+        String next = scanner.next();
         if (next.equals("1")) {
-           game.continueGame(loginMenu());
-       }else if(next.equals("2")){
-           game.startGame(loginMenu());
-       }else if (next.equals("3")){
-           joinServer();
-       }else if (next.equals("4"))
-           System.exit(0);
+            game.continueGame(loginMenu());
+        } else if (next.equals("2")) {
+            game.startGame(loginMenu());
+        } else if (next.equals("3")) {
+            joinServer();
+        } else if (next.equals("4"))
+            System.exit(0);
 
         userMenu(loginMenu());
     }
 
-    public static void userMenu(User user){
+    public static void userMenu(User user) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("1 : Go to");
@@ -35,7 +36,7 @@ public class Menu {
         System.out.println("5 : exit");
         int awnser = scanner.nextInt();
 
-        if (awnser == 1){
+        if (awnser == 1) {
             goTo(user);
         } else if (awnser == 2) {
 
@@ -48,16 +49,14 @@ public class Menu {
         }
     }
 
-
-
-    public static void mainMenu(){
+    public static void mainMenu() {
         System.out.println("1 : continue game");
         System.out.println("2 : start new game");
         System.out.println("3 : join server");
         System.out.println("4 : exit");
     }
 
-    public static User loginMenu(){
+    public static User loginMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your username : ");
         String username = scanner.next();
@@ -68,35 +67,33 @@ public class Menu {
         return user;
     }
 
-    private static void joinServer(){
+    private static void joinServer() {
         System.out.print("Enter Server Ip Address :");
         String ip = scanner.next();
         System.out.print("Enter Server Port :");
         int port = scanner.nextInt();
-        game.joinServer(ip,port);
+        game.joinServer(ip, port);
     }
 
-    private static void goTo(User user){
+    private static void goTo(User user) {
         Scanner in = new Scanner(System.in);
         Character i = null;
         for (Character x : Data.characters) {
-            if(x.getUserInfo().equals(user)){
+            if (x.getUserInfo().equals(user)) {
                 i = x;
                 break;
             }
         }
-        if (i == null){
+        if (i == null) {
             System.out.println("Character is not found");
         }
 
-
-
     }
 
-    private static Industry searchByTitle(String title){
+    private static Industry searchByTitle(String title) {
         Industry k = null;
         for (Industry x : Data.industries) {
-            if(x.getTitle().equals(title)){
+            if (x.getTitle().equals(title)) {
                 k = x;
                 break;
             }
@@ -104,10 +101,10 @@ public class Menu {
         return k;
     }
 
-    private static Property searchByID(int id){
-        Property k = null ;
+    private static Property searchByID(int id) {
+        Property k = null;
         for (Property x : Data.properties) {
-            if (x.getPropertyID() == id){
+            if (x.getPropertyID() == id) {
                 k = x;
                 break;
             }
@@ -115,10 +112,11 @@ public class Menu {
         return k;
     }
 
-    private static Property searchByLocation(float x , float y){
+    private static Property searchByLocation(float x, float y) {
         Property k = null;
         for (Property w : Data.properties) {
-            if(x<=w.getCoordinate()[0] && w.getCoordinate()[0]+w.getScales()[0]>=x && y<=w.getCoordinate()[1] && w.getScales()[1]+w.getCoordinate()[1]>=y){
+            if (x <= w.getCoordinate()[0] && w.getCoordinate()[0] + w.getScales()[0] >= x && y <= w.getCoordinate()[1]
+                    && w.getScales()[1] + w.getCoordinate()[1] >= y) {
                 k = w;
                 break;
             }
@@ -127,6 +125,6 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-            showMenu();
+        showMenu();
     }
 }

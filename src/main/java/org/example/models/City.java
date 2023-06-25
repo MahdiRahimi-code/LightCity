@@ -19,9 +19,10 @@ public class City implements CityInterface {
     public City() {
         characters = new ArrayList<>();
         municipality = new Municipality();
-//        Get Bank Property from municipality
-        bankSystem = new Bank(new Property(new float[]{12, 32}, new float[]{42, 32}, root), root);
-        FastFoodShop fastFoodShop = new FastFoodShop("SuperMarket", new Property(new float[]{12, 32}, new float[]{42, 0}, root), root);
+        // Get Bank Property from municipality
+        bankSystem = new Bank(new Property(new float[] { 12, 32 }, new float[] { 42, 32 }, root), root);
+        FastFoodShop fastFoodShop = new FastFoodShop("SuperMarket",
+                new Property(new float[] { 12, 32 }, new float[] { 42, 0 }, root), root);
         Data.banks.add(bankSystem);
         Data.fastFoodShops.add(fastFoodShop);
         stockMarket = new StockMarket();
@@ -42,11 +43,11 @@ public class City implements CityInterface {
         String players = Arrays.toString(characters.toArray());
     }
 
-
     /**
-     * Begin Game function generate a new thread for each character ,<b > DO NOT CHANGE THIS FUNCTION STRUCTURE</b> ,
+     * Begin Game function generate a new thread for each character ,<b > DO NOT
+     * CHANGE THIS FUNCTION STRUCTURE</b> ,
      *
-     * */
+     */
     private void beginGame(Character character) {
         Thread thread = new Thread(() -> {
             try {
@@ -54,8 +55,8 @@ public class City implements CityInterface {
                 while (true) {
                     System.out.println("Show Menu");
                     switch (scanner.next()) {
-                        case "2"-> System.out.println("Do Something");
-                        case "3"-> System.out.println("Do Something");
+                        case "2" -> System.out.println("Do Something");
+                        case "3" -> System.out.println("Do Something");
                     }
                 }
             } catch (Exception e) {

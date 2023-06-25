@@ -3,7 +3,7 @@ package org.example.models;
 public class Property {
     private float[] scales;
     private float[] coordinate;
-    private Character owner ;
+    private Character owner;
     private static int ID = 0;
     private int PropertyID;
 
@@ -12,7 +12,7 @@ public class Property {
         this.coordinate = coordinate;
         this.owner = owner;
         ID++;
-        PropertyID=ID;
+        PropertyID = ID;
     }
 
     public float[] getScales() {
