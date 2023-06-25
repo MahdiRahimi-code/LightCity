@@ -26,14 +26,11 @@ public class Game implements GameInterface {
         if (isFound) {
             System.out.println("User found");
             if (Data.cities.isEmpty()){
-                System.out.println("No city is created...Entering new city");
+                System.out.println("No city is created...Generating new city");
                 generateNewCity();
                 city.joinCharacter(user);
                 Data.cities.add(city);
                 Database.WriteData();
-            }
-            else{
-
             }
         }else {
             System.out.println("User not found");
@@ -50,7 +47,6 @@ public class Game implements GameInterface {
         Database.WriteData();
         generateNewCity();
         Data.cities.add(city);
-        Database.WriteData();
         city.joinCharacter(user);
     }
 

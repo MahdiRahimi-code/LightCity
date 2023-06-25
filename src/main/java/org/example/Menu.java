@@ -9,6 +9,16 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     public static void showMenu(){
         mainMenu();
+       String next = scanner.next();
+        if (next.equals("1")) {
+           game.continueGame(loginMenu());
+       }else if(next.equals("2")){
+           game.startGame(loginMenu());
+       }else if (next.equals("3")){
+           joinServer();
+       }else if (next.equals("4"))
+           System.exit(0);
+
         //1 : Go to
         //2 : process location
         //3 : Dashboard
@@ -16,21 +26,35 @@ public class Menu {
         //5 : Exit
     }
 
+    public static void userMenu(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("1 : Go to");
+        System.out.println("2 : Process Location");
+        System.out.println("3 : Dashboard");
+        System.out.println("4 : Life");
+        System.out.println("5 : exit");
+        int awnser = scanner.nextInt();
+
+        if (awnser == 1){
+
+        } else if (awnser == 2) {
+
+        } else if (awnser == 3) {
+
+        } else if (awnser == 4) {
+
+        } else if (awnser == 5) {
+            showMenu();
+        }
+    }
+
+
     public static void mainMenu(){
         System.out.println("1 : continue game");
         System.out.println("2 : start new game");
         System.out.println("3 : join server");
         System.out.println("4 : exit");
-        String next = scanner.next();
-
-        if (next.equals("1")) {
-            game.continueGame(loginMenu());
-        }else if(next.equals("2")){
-            game.startGame(loginMenu());
-        }else if (next.equals("3")){
-            joinServer();
-        }else if (next.equals("4"))
-            System.exit(0);
     }
 
     public static User loginMenu(){

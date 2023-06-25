@@ -1,5 +1,6 @@
 package org.example.defualtSystem;
 
+import org.example.Data;
 import org.example.interfaces.MunicipalityInterface;
 import org.example.models.Property;
 
@@ -13,7 +14,13 @@ public class Municipality implements MunicipalityInterface {
     }
 
     private void generateProperties() {
-//        Create an algorithm for generating properties for city 
+        for (int i=0;i<7;i++) {
+            for (int j = 0; j < 4; j++) {
+                Property property = new Property(new float[]{7, 14}, new float[]{7*i,16*j},null);
+                properties.add(property);
+                Data.properties.add(property);
+            }
+        }
     }
 
     @Override

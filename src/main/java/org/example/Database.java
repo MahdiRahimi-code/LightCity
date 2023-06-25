@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 
 public class Database {
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     // Database credentials
 
     private static Connection conn;
@@ -33,25 +33,25 @@ public class Database {
                 Data.users.add(new User(user.getString("Username"), parts[0]));
             }
 
-            ResultSet job = stmt.executeQuery("SELECT * FROM job");
-            while(job.next()){
-                int i = job.getInt("IndustryID");
-                String id = Integer.toString(i);
-                Data.jobs.add(new Job(job.getString("Title"), job.getFloat("Income"), id));
-            }
-
-            ResultSet bankAccount = stmt.executeQuery(("SELECT * FROM bankaccount"));
-            while(bankAccount.next()){
-                String dateString = bankAccount.getString("LastChangeDate");
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = (Date) dateFormat.parse(dateString);
-                Data.bankAccounts.add(new BankAccount(bankAccount.getString("Owner"), bankAccount.getString("Password"), bankAccount.getFloat("Money"), date));
-            }
-
-            ResultSet bankTurnOver = stmt.executeQuery("SELECT * FROM bankturnover");
-            while(bankTurnOver.next()){
-                Data.bankTurnovers.add(new BankTurnover(bankTurnOver.getFloat("Withdraw"), bankTurnOver.getFloat("Deposit")));
-            }
+//            ResultSet job = stmt.executeQuery("SELECT * FROM job");
+//            while(job.next()){
+//                int i = job.getInt("IndustryID");
+//                String id = Integer.toString(i);
+//                Data.jobs.add(new Job(job.getString("Title"), job.getFloat("Income"), id));
+//            }
+//
+//            ResultSet bankAccount = stmt.executeQuery(("SELECT * FROM bankaccount"));
+//            while(bankAccount.next()){
+//                String dateString = bankAccount.getString("LastChangeDate");
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//                Date date = (Date) dateFormat.parse(dateString);
+//                Data.bankAccounts.add(new BankAccount(bankAccount.getString("Owner"), bankAccount.getString("Password"), bankAccount.getFloat("Money"), date));
+//            }
+//
+//            ResultSet bankTurnOver = stmt.executeQuery("SELECT * FROM bankturnover");
+//            while(bankTurnOver.next()){
+//                Data.bankTurnovers.add(new BankTurnover(bankTurnOver.getFloat("Withdraw"), bankTurnOver.getFloat("Deposit")));
+//            }
 
 //            ResultSet character = stmt.executeQuery("SELECT * FROM character");
 //            while (character.next()){
