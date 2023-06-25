@@ -8,28 +8,29 @@ public class Menu {
     private static Game game = new Game();
     private static Scanner scanner = new Scanner(System.in);
     public static void showMenu(){
-       System.out.println("1 : continue game");
-       System.out.println("2 : start new game");
-       System.out.println("3 : join server");
-       System.out.println("4 : exit");
-       String next = scanner.next();
-
-        if (next.equals("1")) {
-           game.continueGame(loginMenu());
-       }else if(next.equals("2")){
-           game.startGame(loginMenu());
-       }else if (next.equals("3")){
-           joinServer();
-       }else if (next.equals("4"))
-           System.exit(0);
-    }
-
-    public static void mainMenu(){
+        mainMenu();
         //1 : Go to
         //2 : process location
         //3 : Dashboard
         //4 : life
         //5 : Exit
+    }
+
+    public static void mainMenu(){
+        System.out.println("1 : continue game");
+        System.out.println("2 : start new game");
+        System.out.println("3 : join server");
+        System.out.println("4 : exit");
+        String next = scanner.next();
+
+        if (next.equals("1")) {
+            game.continueGame(loginMenu());
+        }else if(next.equals("2")){
+            game.startGame(loginMenu());
+        }else if (next.equals("3")){
+            joinServer();
+        }else if (next.equals("4"))
+            System.exit(0);
     }
 
     public static User loginMenu(){
