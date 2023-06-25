@@ -18,12 +18,6 @@ public class Menu {
            joinServer();
        }else if (next.equals("4"))
            System.exit(0);
-
-        //1 : Go to
-        //2 : process location
-        //3 : Dashboard
-        //4 : life
-        //5 : Exit
     }
 
     public static void userMenu(){
@@ -48,7 +42,6 @@ public class Menu {
             showMenu();
         }
     }
-
 
     public static void mainMenu(){
         System.out.println("1 : continue game");

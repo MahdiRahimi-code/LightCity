@@ -13,7 +13,6 @@ public class Character implements CharacterInterface {
     private ArrayList<Property> properties;
     private static int ID = 0;
     private int characterID;
-
     private Property inPosition;
 
     public Character(User userInfo, BankAccount account, Life life, Job job, ArrayList<Property> properties, Property inPosition) {
