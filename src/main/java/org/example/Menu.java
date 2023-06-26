@@ -79,14 +79,14 @@ public class Menu {
         Scanner in = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
-        Character i = null;
+        Character character = null;
         for (Character x : Data.characters) {
             if(x.getUserInfo().equals(user)){
-                i = x;
+                i = x;           //return character of user
                 break;
             }
         }
-        if (i == null) {
+        if (i == null){
             System.out.println("Character is not found");
             userMenu(user);
         }
@@ -100,16 +100,16 @@ public class Menu {
         if (awnser==1){
             System.out.println("Enter ID : ");
             int id = scanner.nextInt();
-            i.gotToLocation(searchByID(id));
+            character.gotToLocation(searchByID(id));
         } else if (awnser == 2) {
             System.out.println("Enter Location Coordinates : ");
             float coordinateX = input.nextFloat();
             float coordinateY = input.nextFloat();
-            i.gotToLocation(searchByLocation(coordinateX, coordinateY));
+            character.gotToLocation(searchByLocation(coordinateX, coordinateY));
         } else if (awnser == 3) {
             System.out.println("Enter Industry Title");
             String title = input2.next();
-            i.gotToLocation(searchByTitle(title));
+            character.gotToLocation(searchByTitle(title));
         }else{
             userMenu(user);
         }
