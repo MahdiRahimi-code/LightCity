@@ -8,11 +8,13 @@ public class Property {
     private Character owner ;
     private static int ID = 0;
     private int PropertyID;
+    private float price;
 
     public Property(float[] scales, float[] coordinate, Character owner) {
         this.scales = scales;
         this.coordinate = coordinate;
         this.owner = owner;
+        price = (float) ((scales[0] * scales[1]) * 0.5);
         ID++;
         PropertyID=ID;
     }
@@ -43,6 +45,14 @@ public class Property {
 
     public int getPropertyID() {
         return PropertyID;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     @Override

@@ -94,19 +94,69 @@ public class Menu {
         int awnser = scanner.nextInt();
 
         if (awnser==1){
-            System.out.println("Enter ID : ");
-            int id = scanner.nextInt();
-            character.gotToLocation(searchByID(id));
-        } else if (awnser == 2) {
-            System.out.println("Enter Location Coordinates : ");
-            float coordinateX = input.nextFloat();
-            float coordinateY = input.nextFloat();
-            character.gotToLocation(searchByLocation(coordinateX, coordinateY));
-        } else if (awnser == 3) {
-            System.out.println("Enter Industry Title");
-            String title = input2.next();
-            character.gotToLocation(searchByTitle(title));
-        }else{
+            while (true) {
+                System.out.println("Enter ID : (0 to back)");
+                int id = scanner.nextInt();
+
+                if (id == 0) {
+                    goTo(user);
+                    break;
+                }
+
+                if (searchByID(id) == null) {
+                    System.out.println("No Property Found");
+                } else {
+                    character.gotToLocation(searchByID(id));
+                    character.positionProcessing(searchByID(id));
+                    break;
+                }
+            }
+        }
+
+        else if (awnser == 2) {
+            while (true) {
+                System.out.println("Enter Location Coordinates : (-1 to back)");
+                System.out.println("Coordinate X : ");
+                float coordinateX = input.nextFloat();
+                if (coordinateX==-1){
+                    goTo(user);
+                    break;
+                }
+                System.out.println("Coordinate Y : ");
+                float coordinateY = input.nextFloat();
+
+                if (searchByLocation(coordinateX, coordinateY) == null){
+                    System.out.println("No Property Found");
+                }
+                else{
+                    character.gotToLocation(searchByLocation(coordinateX, coordinateY));
+                    character.positionProcessing(searchByLocation(coordinateX, coordinateY));
+                    break;
+                }
+            }
+        }
+
+        else if (awnser == 3) {
+            while (true) {
+                System.out.println("Enter Industry Title : (b to back)");
+                String title = input2.next();
+
+                if (title.compareTo("b") == 0){
+                    goTo(user);
+                    break;
+                }
+
+                if (searchByTitle(title) == null){
+                    System.out.println("No Industry Found");
+                }
+                else{
+                character.gotToLocation(searchByTitle(title));
+
+                }
+            }
+        }
+
+        else{
             userMenu(user);
         }
 
@@ -138,12 +188,21 @@ public class Menu {
     private static Property searchByLocation(float x , float y){
         Property k = null;
         for (Property w : Data.properties) {
-            if(x<=w.getCoordinate()[0] && w.getCoordinate()[0]+w.getScales()[0]>=x && y<=w.getCoordinate()[1] && w.getScales()[1]+w.getCoordinate()[1]>=y){
+            if (x<=w.getCoordinate()[0] && w.getCoordinate()[0]+w.getScales()[0]>=x && y<=w.getCoordinate()[1] && w.getScales()[1]+w.getCoordinate()[1]>=y){
                 k = w;
                 break;
             }
         }
+        if (k == null){
+            for (Industry i : Data.industries){
+                if (x<=i.getCoordinate()[0] && i.getCoordinate()[0]+i.getScales()[0]>=x && y<=i.getCoordinate()[1] && i.getScales()[1]+i.getCoordinate()[1]>=y){
+                    k = i;
+                    break;
+                }
+            }
+        }
         return k;
+
     }
 
     public static void main(String[] args) {
