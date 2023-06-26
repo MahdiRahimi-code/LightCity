@@ -1,12 +1,10 @@
 package org.example.models;
 
-import org.example.defualtSystem.Bank;
-import org.example.defualtSystem.Life;
-import org.example.defualtSystem.Municipality;
-import org.example.defualtSystem.StockMarket;
+import org.example.Data;
+import org.example.Database;
+import org.example.defualtSystem.*;
 import org.example.interfaces.CityInterface;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -17,7 +15,6 @@ public class City implements CityInterface {
     private final Municipality municipality;
 
     private final StockMarket stockMarket;
-
     private Character root;
 
     public City() {
@@ -25,7 +22,13 @@ public class City implements CityInterface {
         municipality = new Municipality();
 //        Get Bank Property from municipality
         bankSystem = new Bank(new Property(new float[]{12, 32}, new float[]{42, 32}, root), root);
+        FastFoodShop fastFoodShop = new FastFoodShop("SuperMarket", new Property(new float[]{12, 32}, new float[]{42, 0}, root), root);
         stockMarket = new StockMarket();
+        Data.banks.add(bankSystem);
+        Data.fastFoodShops.add(fastFoodShop);
+        Data.municipalities.add(municipality);
+        Data.stockMarkets.add(stockMarket);
+        Database.WriteData();
         stockMarket.startMarketSimulation();
     }
 
@@ -33,6 +36,7 @@ public class City implements CityInterface {
     public void joinCharacter(User userinfo) {
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
         Character character = new Character(userinfo, newAccount, new Life(), null, null, null);
+        Data.characters.add(character);
         characters.add(character);
         beginGame(character);
     }

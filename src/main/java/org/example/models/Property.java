@@ -1,14 +1,22 @@
 package org.example.models;
 
+import java.util.Arrays;
+
 public class Property {
     private float[] scales;
     private float[] coordinate;
     private Character owner ;
+    private static int ID = 0;
+    private int PropertyID;
+    private float price;
 
     public Property(float[] scales, float[] coordinate, Character owner) {
         this.scales = scales;
         this.coordinate = coordinate;
         this.owner = owner;
+        price = (float) ((scales[0] * scales[1]) * 0.5);
+        ID++;
+        PropertyID=ID;
     }
 
     public float[] getScales() {
@@ -33,5 +41,26 @@ public class Property {
 
     public void setCoordinate(float[] coordinate) {
         this.coordinate = coordinate;
+    }
+
+    public int getPropertyID() {
+        return PropertyID;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Property{" +
+                "scales=" + Arrays.toString(scales) +
+                ", coordinate=" + Arrays.toString(coordinate) +
+                ", owner=" + owner +
+                '}';
     }
 }
