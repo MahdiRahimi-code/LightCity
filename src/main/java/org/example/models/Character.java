@@ -1,5 +1,6 @@
 package org.example.models;
 
+import org.example.Data;
 import org.example.defualtSystem.Life;
 import org.example.interfaces.CharacterInterface;
 
@@ -74,6 +75,17 @@ public class Character implements CharacterInterface {
     @Override
     public void positionProcessing() {
 
+    }
+
+    public static Character searchCharacterByUser(User user){
+        Character character = null;
+        for (Character x : Data.characters) {
+            if(x.getUserInfo().equals(user)){
+                character = x;           //return character of user
+                break;
+            }
+        }
+        return character;
     }
 
     public int getCharacterID() {

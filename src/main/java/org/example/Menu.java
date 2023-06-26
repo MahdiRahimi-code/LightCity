@@ -80,13 +80,8 @@ public class Menu {
         Scanner in = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
-        Character character = null;
-        for (Character x : Data.characters) {
-            if(x.getUserInfo().equals(user)){
-                character = x;           //return character of user
-                break;
-            }
-        }
+
+        Character character = Character.searchCharacterByUser(user);
         if (character == null){
             System.out.println("Character is not found");
             userMenu(user);
