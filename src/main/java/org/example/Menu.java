@@ -14,15 +14,15 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     public static void showMenu(){
         mainMenu();
-       String next = scanner.next();
+        String next = scanner.next();
         if (next.equals("1")) {
-           game.continueGame(loginMenu());
-       }else if(next.equals("2")){
-           game.startGame(loginMenu());
-       }else if (next.equals("3")){
-           joinServer();
-       }else if (next.equals("4"))
-           System.exit(0);
+            game.continueGame(loginMenu());
+        }else if(next.equals("2")){
+            game.startGame(loginMenu());
+        }else if (next.equals("3")){
+            joinServer();
+        }else if (next.equals("4"))
+            System.exit(0);
 
         userMenu(loginMenu());
     }
@@ -149,7 +149,7 @@ public class Menu {
                     System.out.println("No Industry Found");
                 }
                 else{
-                character.gotToLocation(searchByTitle(title));
+                    character.gotToLocation(searchByTitle(title));
 
                 }
             }
@@ -314,6 +314,6 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-            showMenu();
+        showMenu();
     }
 }
