@@ -82,11 +82,11 @@ public class Menu {
         Character character = null;
         for (Character x : Data.characters) {
             if(x.getUserInfo().equals(user)){
-                i = x;           //return character of user
+                character = x;           //return character of user
                 break;
             }
         }
-        if (i == null){
+        if (character == null){
             System.out.println("Character is not found");
             userMenu(user);
         }
