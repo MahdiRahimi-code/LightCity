@@ -1,5 +1,7 @@
 package org.example.models;
 
+import java.util.Arrays;
+
 public class Property {
     private float[] scales;
     private float[] coordinate;
@@ -41,5 +43,14 @@ public class Property {
 
     public int getPropertyID() {
         return PropertyID;
+    }
+
+    @Override
+    public String toString() {
+        return "Property{" +
+                "scales=" + Arrays.toString(scales) +
+                ", coordinate=" + Arrays.toString(coordinate) +
+                ", owner=" + owner +
+                '}';
     }
 }

@@ -77,16 +77,44 @@ public class Menu {
 
     private static void goTo(User user) {
         Scanner in = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
+        Scanner input2 = new Scanner(System.in);
         Character i = null;
         for (Character x : Data.characters) {
-            if (x.getUserInfo().equals(user)) {
+            if(x.getUserInfo().equals(user)){
                 i = x;
                 break;
             }
         }
         if (i == null) {
             System.out.println("Character is not found");
+            userMenu(user);
         }
+
+        System.out.println("1 : Go to Property By ID");
+        System.out.println("2 : Go To Property By Location");
+        System.out.println("3 : Go To Property By Industry Tilte");
+        System.out.println("4 : Exit");
+        int awnser = scanner.nextInt();
+
+        if (awnser==1){
+            System.out.println("Enter ID : ");
+            int id = scanner.nextInt();
+            i.gotToLocation(searchByID(id));
+        } else if (awnser == 2) {
+            System.out.println("Enter Location Coordinates : ");
+            float coordinateX = input.nextFloat();
+            float coordinateY = input.nextFloat();
+            i.gotToLocation(searchByLocation(coordinateX, coordinateY));
+        } else if (awnser == 3) {
+            System.out.println("Enter Industry Title");
+            String title = input2.next();
+            i.gotToLocation(searchByTitle(title));
+        }else{
+            userMenu(user);
+        }
+
+
 
     }
 
