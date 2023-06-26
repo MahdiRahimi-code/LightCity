@@ -20,7 +20,7 @@ public class BankAccount {
         this.money = money;
         this.lastChange = lastChange;
         ID++;
-        bankAccountID = ID;
+        bankAccountID=ID;
     }
 
     public String getOwner() {
@@ -43,6 +43,7 @@ public class BankAccount {
         return money;
     }
 
+
     public Date getLastChange() {
         return lastChange;
     }
@@ -51,23 +52,22 @@ public class BankAccount {
         this.lastChange = lastChange;
     }
 
-    public boolean withdraw(Character character, float amount) {
-        if (character.getUserInfo().getUsername().equals(owner)) {
-            if (amount <= money) {
-                Bank.turnover.transfer(amount, -1);
-                money -= amount;
+    public boolean withdraw(Character character,float amount){
+        if(character.getUserInfo().getUsername().equals(owner)){
+            if(amount <= money){
+                Bank.turnover.transfer(amount,-1);
+                money-= amount;
                 return true;
-            } else
+            }else
                 return false;
         }
         return false;
     }
-
-    public boolean deposit(Character character, float amount) {
-        if (amount > 0) {
-            String log = String.format("User : %s deposit %f \n", character.getUserInfo().getUsername(), amount);
-            logs += log;
-            Bank.turnover.transfer(amount, 1);
+    public boolean deposit(Character character,float amount){
+        if(amount >0){
+            String log = String.format("User : %s deposit %f \n",character.getUserInfo().getUsername(),amount);
+            logs+=log;
+            Bank.turnover.transfer(amount,1);
             money += amount;
             return true;
         }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class StockMarket {
+public class StockMarket{
     private Map<String, Double> users;
 
     public StockMarket() {
