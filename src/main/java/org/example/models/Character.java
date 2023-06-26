@@ -15,6 +15,7 @@ public class Character implements CharacterInterface {
     private Life life;
     private Job job;
     public ArrayList<Property> properties;
+    public ArrayList<Food> foods;
     private static int ID = 0;
     private int characterID;
     private Property inPosition;
@@ -26,6 +27,8 @@ public class Character implements CharacterInterface {
         this.job = job;
         this.properties = properties;
         this.inPosition = inPosition;
+        properties = new ArrayList<>();
+        foods = new ArrayList<>();
         ID++;
         characterID=ID;
     }
@@ -136,7 +139,31 @@ public class Character implements CharacterInterface {
 
     @Override
     public void positionProcessing(Industry industry) {
+        System.out.println("You Are IN : " + industry.getTitle());
 
+        if (industry.getTitle().compareTo("Bank")==0){
+
+        }
+
+        else{
+            Scanner input = new Scanner(System.in);
+            System.out.println("Options : (0 to back)");
+            System.out.println("1 : Sign as Employee");
+            System.out.println("2 : Buy Food");
+            int answer = input.nextInt();
+            while (true){
+                if (answer==1){
+
+                    break;
+                } else if (answer == 2) {
+                    Data.fastFoodShops.get(0).buyFood(this);
+                    break;
+                }else {
+                    System.out.println("Enter correct value");
+                }
+            }
+
+        } //it is shop
     }
 
     public static Character searchCharacterByUser(User user){

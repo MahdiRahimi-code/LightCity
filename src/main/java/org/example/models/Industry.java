@@ -8,7 +8,6 @@ public class Industry extends Property{
     private float income;
     private static int ID =0;
     private int IndustryID;
-
     protected ArrayList<Employee> employees = new ArrayList<>();
 
     /**

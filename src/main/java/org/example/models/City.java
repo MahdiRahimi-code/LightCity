@@ -22,7 +22,7 @@ public class City implements CityInterface {
         municipality = new Municipality();
 //        Get Bank Property from municipality
         bankSystem = new Bank(new Property(new float[]{12, 32}, new float[]{42, 32}, root), root);
-        FastFoodShop fastFoodShop = new FastFoodShop("SuperMarket", new Property(new float[]{12, 32}, new float[]{42, 0}, root), root);
+        FastFoodShop fastFoodShop = new FastFoodShop("foodShop", new Property(new float[]{12, 32}, new float[]{42, 0}, root), root);
         stockMarket = new StockMarket();
         Data.banks.add(bankSystem);
         Data.fastFoodShops.add(fastFoodShop);
