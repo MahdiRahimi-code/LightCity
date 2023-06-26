@@ -1,17 +1,20 @@
 package org.example.models;
 
 import org.example.Data;
+import org.example.Database;
+import org.example.Menu;
 import org.example.defualtSystem.Life;
 import org.example.interfaces.CharacterInterface;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Character implements CharacterInterface {
     private User userInfo;
     private BankAccount account;
     private Life life;
     private Job job;
-    private ArrayList<Property> properties;
+    public ArrayList<Property> properties;
     private static int ID = 0;
     private int characterID;
     private Property inPosition;
@@ -64,18 +67,77 @@ public class Character implements CharacterInterface {
         if (destination == null)
             return;
         inPosition = destination;
-    }
-
-    public ArrayList<Property> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(ArrayList<Property> properties) {
-        this.properties = properties;
+        Database.WriteData();
     }
 
     @Override
-    public void positionProcessing() {
+    public void positionProcessing(Property property) {
+        System.out.println("You are In : ");
+        Property chProperty = this.inPosition;
+        chProperty.toString();
+        Scanner input = new Scanner((System.in));
+
+        if (chProperty.getOwner() != null){
+            System.out.println("This Property Belongs To : "+chProperty.getOwner());
+            System.out.printf("\tPrice : %f", chProperty.getPrice());
+            System.out.println("Do You Want To Buy It ? (1:YES/2:NO)");
+            int awnser = input.nextInt();
+            while (true){
+                if (awnser==1){
+                    Data.municipalities.get(0).sellProperty(chProperty, this);
+                    break;
+                } else if (awnser == 2) {
+                    Menu.userMenu(this.userInfo);
+                    break;
+                }else {
+                    System.out.println("Incorrect Input");
+                }
+            }
+
+            Menu.userMenu(this.userInfo);
+        }
+
+        else if(chProperty.getOwner().equals(this)){
+            System.out.println("This is your Property");
+            System.out.printf("\tPrice : %f", chProperty.getPrice());
+            System.out.println("Do You Want To Sell It ? (1:YES/2:NO)");
+            int awnser1 = input.nextInt();
+            while (true){
+                if (awnser1==1){
+                    Data.municipalities.get(0).sellOwnProperty(chProperty, this);
+                    break;
+                } else if (awnser1 == 2) {
+                    Menu.userMenu(this.userInfo);
+                    break;
+                }else {
+                    System.out.println("Incorrect Input");
+                }
+            }
+
+            Menu.userMenu(this.userInfo);
+        }
+
+        else {
+            System.out.println("You can Buy This Property");
+            System.out.printf("\tPrice : %f", chProperty.getPrice());
+            System.out.println("Do You Want To Buy It ? (1:YES/2:NO)");
+            int awnser2 = input.nextInt();
+            while (true){
+                if (awnser2==1){
+                    Data.municipalities.get(0).buyProperty(chProperty, this);
+                    break;
+                } else if (awnser2 == 2) {
+                    Menu.userMenu(this.userInfo);
+                    break;
+                }else {
+                    System.out.println("Incorrect Input");
+                }
+            }
+        }
+    }
+
+    @Override
+    public void positionProcessing(Industry industry) {
 
     }
 
@@ -92,5 +154,9 @@ public class Character implements CharacterInterface {
 
     public int getCharacterID() {
         return characterID;
+    }
+
+    public Property getInPosition() {
+        return inPosition;
     }
 }
