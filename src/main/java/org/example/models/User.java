@@ -8,12 +8,11 @@ public class User {
     private String password;
     private int userID;
 
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         ID++;
-        userID=ID;
+        userID = ID;
     }
 
     public String getUsername() {
@@ -32,8 +31,7 @@ public class User {
         this.password = password;
     }
 
-    public void sign(String username,String password)
-    {
+    public void sign(String username, String password) {
         setPassword(password);
         setUsername(username);
     }

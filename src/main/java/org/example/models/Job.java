@@ -5,19 +5,19 @@ public class Job {
     private float income;
     private String industryId;
     private static int ID = 0;
-    private int JobID ;
+    private int JobID;
 
     /**
-     * @param title : Industry title
-     * @param income : industry The monthly income of its employees
+     * @param title      : Industry title
+     * @param income     : industry The monthly income of its employees
      * @param industryId : industry id
-     * */
+     */
     public Job(String title, float income, String industryId) {
         this.title = title;
         this.income = income;
         this.industryId = industryId;
         ID++;
-        JobID=ID;
+        JobID = ID;
     }
 
     public String getTitle() {

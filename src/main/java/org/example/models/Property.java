@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Property {
     private float[] scales;
     private float[] coordinate;
-    private Character owner ;
+    private Character owner;
     private static int ID = 0;
     private int PropertyID;
     private float price;
@@ -16,7 +16,7 @@ public class Property {
         this.owner = owner;
         price = (float) ((scales[0] * scales[1]) * 0.5);
         ID++;
-        PropertyID=ID;
+        PropertyID = ID;
     }
 
     public float[] getScales() {

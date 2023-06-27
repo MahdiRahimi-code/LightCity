@@ -16,26 +16,28 @@ public class Bank extends Industry implements BankInterface {
     private Manager manager = null;
     public static BankTurnover turnover;
 
-    public Bank(Property property,Character root) {
-        super("Bank",property,root,100.0f);
-        turnover = new BankTurnover(0,0);
+    public Bank(Property property, Character root) {
+        super("Bank", property, root, 100.0f);
+        turnover = new BankTurnover(0, 0);
     }
 
-    public BankAccount newAccount(String username,String password){
-        BankAccount account = new BankAccount(username,password,0,new Date());
+    public BankAccount newAccount(String username, String password) {
+        BankAccount account = new BankAccount(username, password, 0, new Date());
         accounts.add(account);
         return account;
     }
-    public boolean registerAsEmp(Character character){
-        if(employees.size() >= MAX_EMPLOYEE_COUNT)return false;
-        Employee employee = new Employee(character.getUserInfo().getUsername(),this,BASE_EMP_SALARY,character.getAccount());
+
+    public boolean registerAsEmp(Character character) {
+        if (employees.size() >= MAX_EMPLOYEE_COUNT)
+            return false;
+        Employee employee = new Employee(character.getUserInfo().getUsername(), this, BASE_EMP_SALARY,
+                character.getAccount());
         employees.add(employee);
         return true;
     }
 
-
-    public String bankDetail(Character character){
-        if(character.getUserInfo().getUsername().equals(manager.getUsername())){
+    public String bankDetail(Character character) {
+        if (character.getUserInfo().getUsername().equals(manager.getUsername())) {
             return "";
         }
         return "Only Manager can see Bank detail";

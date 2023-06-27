@@ -5,26 +5,29 @@ import org.example.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Industry extends Property{
+public class Industry extends Property {
     protected String title;
     protected float income;
-    private static int ID =0;
+    private static int ID = 0;
     protected int IndustryID;
     protected ArrayList<Employee> employees = new ArrayList<>();
 
     /**
-     * @param title : A Title for generate Industry @example : Bank extends Industry then title = "Bank"
-     * @param property : Industry owner should have a Property to create this industry on it
-     * @param  character : Industry owner
-     * @param  income : Each Business has a class like Bank and extends Industry , in super method  Enter the desired monthly income amount
-     * */
-    public Industry(String title,Property property,Character character,float income) {
-        super(property.getScales(),property.getCoordinate(),character);
+     * @param title     : A Title for generate Industry @example : Bank extends
+     *                  Industry then title = "Bank"
+     * @param property  : Industry owner should have a Property to create this
+     *                  industry on it
+     * @param character : Industry owner
+     * @param income    : Each Business has a class like Bank and extends Industry ,
+     *                  in super method Enter the desired monthly income amount
+     */
+    public Industry(String title, Property property, Character character, float income) {
+        super(property.getScales(), property.getCoordinate(), character);
         this.title = title;
         this.income = income;
         startPaySalary();
         ID++;
-        IndustryID=ID;
+        IndustryID = ID;
         Data.industries.add(this);
     }
 
@@ -44,7 +47,6 @@ public class Industry extends Property{
         this.income = income;
     }
 
-
     public ArrayList<Employee> getEmployee() {
         return employees;
     }
@@ -53,18 +55,18 @@ public class Industry extends Property{
         this.employees = employee;
     }
 
-    public void startPaySalary(){
-        Thread thread = new Thread(()->{
-           while (true){
-               employees.stream().forEach((employee)->{
-                   employee.paySalary();
-               });
-               try {
-                   Thread.sleep(10800000); // wait for 1 minute
-               } catch (InterruptedException e) {
-                   e.printStackTrace();
-               }
-           }
+    public void startPaySalary() {
+        Thread thread = new Thread(() -> {
+            while (true) {
+                employees.stream().forEach((employee) -> {
+                    employee.paySalary();
+                });
+                try {
+                    Thread.sleep(10800000); // wait for 1 minute
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         });
         thread.start();
     }

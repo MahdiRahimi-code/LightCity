@@ -10,12 +10,12 @@ public class Life {
     private static int ID = 0;
     private int LifeID;
 
-    public Life(){
+    public Life() {
         food = 100.0f;
-        water=100.0f;
-        sleep=100.0f;
+        water = 100.0f;
+        sleep = 100.0f;
         ID++;
-        LifeID=ID;
+        LifeID = ID;
     }
 
     public Life(float food, float water, float sleep) {
@@ -24,7 +24,7 @@ public class Life {
         this.sleep = sleep;
         startConsuming();
         ID++;
-        LifeID=ID;
+        LifeID = ID;
     }
 
     public float getFood() {
@@ -39,20 +39,18 @@ public class Life {
         return sleep;
     }
 
+    public void foodConsumption(Food product) {
 
-    public void foodConsumption(Food product){
-        
-            water+=product.getWater();
-            food +=product.getFood();
-        
+        water += product.getWater();
+        food += product.getFood();
+
     }
 
-    public void liquidConsumption(Liquid product){
-        if(product.available){
-            water+=product.getLiquid();
+    public void liquidConsumption(Liquid product) {
+        if (product.available) {
+            water += product.getLiquid();
         }
     }
-
 
     public void startConsuming() {
         Thread thread = new Thread(() -> {

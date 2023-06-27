@@ -12,22 +12,23 @@ import java.util.Scanner;
 public class Menu {
     private static Game game = new Game();
     private static Scanner scanner = new Scanner(System.in);
-    public static void showMenu(){
+
+    public static void showMenu() {
         mainMenu();
         String next = scanner.next();
         if (next.equals("1")) {
             game.continueGame(loginMenu());
-        }else if(next.equals("2")){
+        } else if (next.equals("2")) {
             game.startGame(loginMenu());
-        }else if (next.equals("3")){
+        } else if (next.equals("3")) {
             joinServer();
-        }else if (next.equals("4"))
+        } else if (next.equals("4"))
             System.exit(0);
 
         userMenu(loginMenu());
     }
 
-    public static void userMenu(User user){
+    public static void userMenu(User user) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("1 : Go to");
@@ -54,23 +55,20 @@ public class Menu {
             } else if (awnser == 5) {
                 Exit(user);
                 break;
-            }
-            else{
+            } else {
                 System.out.println("Enter correct Value");
             }
         }
     }
 
-
-
-    public static void mainMenu(){
+    public static void mainMenu() {
         System.out.println("1 : continue game");
         System.out.println("2 : start new game");
         System.out.println("3 : join server");
         System.out.println("4 : exit");
     }
 
-    public static User loginMenu(){
+    public static User loginMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your username : ");
         String username = scanner.next();
@@ -81,21 +79,21 @@ public class Menu {
         return user;
     }
 
-    private static void joinServer(){
+    private static void joinServer() {
         System.out.print("Enter Server Ip Address :");
         String ip = scanner.next();
         System.out.print("Enter Server Port :");
         int port = scanner.nextInt();
-        game.joinServer(ip,port);
+        game.joinServer(ip, port);
     }
 
-    private static void goTo(User user){
+    private static void goTo(User user) {
         Scanner in = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
 
         Character character = Character.searchCharacterByUser(user);
-        if (character == null){
+        if (character == null) {
             System.out.println("Character is not found");
             userMenu(user);
         }
@@ -103,7 +101,7 @@ public class Menu {
         ShowGoTo();
         int awnser = scanner.nextInt();
 
-        if (awnser==1){
+        if (awnser == 1) {
             while (true) {
                 System.out.println("Enter ID : (0 to back)");
                 int id = scanner.nextInt();
@@ -128,17 +126,16 @@ public class Menu {
                 System.out.println("Enter Location Coordinates : (-1 to back)");
                 System.out.println("Coordinate X : ");
                 float coordinateX = input.nextFloat();
-                if (coordinateX==-1){
+                if (coordinateX == -1) {
                     goTo(user);
                     break;
                 }
                 System.out.println("Coordinate Y : ");
                 float coordinateY = input.nextFloat();
 
-                if (searchByLocation(coordinateX, coordinateY) == null){
+                if (searchByLocation(coordinateX, coordinateY) == null) {
                     System.out.println("No Property Found");
-                }
-                else{
+                } else {
                     character.gotToLocation(searchByLocation(coordinateX, coordinateY));
                     character.positionProcessing();
                     break;
@@ -151,25 +148,23 @@ public class Menu {
                 System.out.println("Enter Industry Title : (b to back)");
                 String title = input2.next();
 
-                if (title.compareTo("b") == 0){
+                if (title.compareTo("b") == 0) {
                     goTo(user);
                     break;
                 }
 
-                if (searchByTitle(title) == null){
+                if (searchByTitle(title) == null) {
                     System.out.println("No Industry Found");
-                }
-                else{
+                } else {
                     character.gotToLocation(searchByTitle(title));
 
                 }
             }
         }
 
-        else{
+        else {
             userMenu(user);
         }
-
 
     }
 
@@ -180,10 +175,10 @@ public class Menu {
         System.out.println("4 : Exit");
     }
 
-    public static Industry searchByTitle(String title){
+    public static Industry searchByTitle(String title) {
         Industry k = null;
         for (Industry x : Data.industries) {
-            if(x.getTitle().equals(title)){
+            if (x.getTitle().equals(title)) {
                 k = x;
                 break;
             }
@@ -191,10 +186,10 @@ public class Menu {
         return k;
     }
 
-    public static Property searchByID(int id){
-        Property k = null ;
+    public static Property searchByID(int id) {
+        Property k = null;
         for (Property x : Data.properties) {
-            if (x.getPropertyID() == id){
+            if (x.getPropertyID() == id) {
                 k = x;
                 break;
             }
@@ -202,17 +197,19 @@ public class Menu {
         return k;
     }
 
-    public static Property searchByLocation(float x , float y){
+    public static Property searchByLocation(float x, float y) {
         Property k = null;
         for (Property w : Data.properties) {
-            if (x<=w.getCoordinate()[0] && w.getCoordinate()[0]+w.getScales()[0]>=x && y<=w.getCoordinate()[1] && w.getScales()[1]+w.getCoordinate()[1]>=y){
+            if (x <= w.getCoordinate()[0] && w.getCoordinate()[0] + w.getScales()[0] >= x && y <= w.getCoordinate()[1]
+                    && w.getScales()[1] + w.getCoordinate()[1] >= y) {
                 k = w;
                 break;
             }
         }
-        if (k == null){
-            for (Industry i : Data.industries){
-                if (x<=i.getCoordinate()[0] && i.getCoordinate()[0]+i.getScales()[0]>=x && y<=i.getCoordinate()[1] && i.getScales()[1]+i.getCoordinate()[1]>=y){
+        if (k == null) {
+            for (Industry i : Data.industries) {
+                if (x <= i.getCoordinate()[0] && i.getCoordinate()[0] + i.getScales()[0] >= x
+                        && y <= i.getCoordinate()[1] && i.getScales()[1] + i.getCoordinate()[1] >= y) {
                     k = i;
                     break;
                 }
@@ -302,29 +299,26 @@ public class Menu {
         } else if (select == 2) {
 
         } else if (select == 3) {
-            if (character.foods.size() > 0){
+            if (character.foods.size() > 0) {
                 k.foodConsumption(character.foods.get(0));
                 character.foods.remove(0);
-            }
-            else{
+            } else {
                 System.out.println("You don't have enough foods");
                 System.out.println("Would you like to go buy some food?");
                 System.out.println("1.YES \n 2.NO");
                 int ar = scanner.nextInt();
-                if (ar == 1){
+                if (ar == 1) {
                     character.gotToLocation(Menu.searchByTitle("Shop"));
-                    character.positionProcessing(); 
-                }
-                else if(ar == 2){
+                    character.positionProcessing();
+                } else if (ar == 2) {
                     System.out.println("Are you sure?");
                     System.out.println("1.YES \n 2.NO");
                     int ar1 = scanner.nextInt();
-                    if (ar1==1){
+                    if (ar1 == 1) {
                         userMenu(user);
-                    }
-                    else{
-                    character.gotToLocation(Menu.searchByTitle("Shop"));
-                    character.positionProcessing();
+                    } else {
+                        character.gotToLocation(Menu.searchByTitle("Shop"));
+                        character.positionProcessing();
                     }
                 }
             }

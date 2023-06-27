@@ -1,4 +1,4 @@
-package org.example.models;           //edited
+package org.example.models;
 
 import org.example.Data;
 import org.example.Database;
@@ -22,7 +22,8 @@ public class Character implements CharacterInterface {
     private int characterID;
     private Property inPosition;
 
-    public Character(User userInfo, BankAccount account, Life life, Job job, ArrayList<Property> properties, Property inPosition) {
+    public Character(User userInfo, BankAccount account, Life life, Job job, ArrayList<Property> properties,
+            Property inPosition) {
         this.userInfo = userInfo;
         this.account = account;
         this.life = life;
@@ -32,7 +33,7 @@ public class Character implements CharacterInterface {
         properties = new ArrayList<>();
         foods = new ArrayList<>();
         ID++;
-        characterID=ID;
+        characterID = ID;
     }
 
     public User getUserInfo() {
@@ -67,8 +68,9 @@ public class Character implements CharacterInterface {
         this.job = job;
     }
 
-    public void gotToLocation(Property destination){
-        if(destination==null)return;
+    public void gotToLocation(Property destination) {
+        if (destination == null)
+            return;
         inPosition = destination;
         Database.WriteData();
     }
@@ -78,36 +80,35 @@ public class Character implements CharacterInterface {
         Property chPosition = this.inPosition;
         Scanner input = new Scanner((System.in));
 
-        if (chPosition.getCoordinate()[0]>=42 && chPosition.getCoordinate()[0]<=54){   //it is in industry
+        if (chPosition.getCoordinate()[0] >= 42 && chPosition.getCoordinate()[0] <= 54) { // it is in industry
 
-            if (chPosition.getCoordinate()[1]>=32 && chPosition.getCoordinate()[1]<=64){   // it is in bank
+            if (chPosition.getCoordinate()[1] >= 32 && chPosition.getCoordinate()[1] <= 64) { // it is in bank
                 Bank bank = Data.banks.get(0);
                 System.out.println("You Are IN : " + bank.getTitle());
 
-                //some Bank options
-                //employee
-                //see account
-                //stock Market detail
+                // some Bank options
+                // employee
+                // see account
+                // stock Market detail
 
             }
 
-            else{    // it is in shop
+            else { // it is in shop
                 FastFoodShop fastFoodShop = Data.fastFoodShops.get(0);
                 System.out.println("You Are IN : " + fastFoodShop.getTitle());
-
                 System.out.println("Options : (0 to back)");
                 System.out.println("1 : Sign as Employee");
                 System.out.println("2 : Buy Food");
                 int answer = input.nextInt();
-                while (true){
-                    if (answer==1){
+                while (true) {
+                    if (answer == 1) {
                         System.out.println("You want to Work As an Employee in : " + fastFoodShop.getTitle());
                         System.out.println("Here Is The Income : " + fastFoodShop.getEmployeeIncome());
                         System.out.println("Are You Sure ? (1:Yes/2:No/3:Back)");
                         int select = input.nextInt();
 
-                        while (true){
-                            if (select==1){
+                        while (true) {
+                            if (select == 1) {
                                 fastFoodShop.getEmployee().add(new Employee(this.userInfo.getUsername(), fastFoodShop,
                                         fastFoodShop.getEmployeeIncome(), this.account));
                                 System.out.println("You Have Successfully Registered As Employee");
@@ -115,18 +116,15 @@ public class Character implements CharacterInterface {
                                 Menu.userMenu(this.userInfo);
                                 break;
 
-                            }
-                            else if (select == 2) {
+                            } else if (select == 2) {
                                 this.positionProcessing();
                                 break;
 
-                            }
-                            else if (select == 3) {
+                            } else if (select == 3) {
                                 Menu.userMenu(this.getUserInfo());
                                 break;
 
-                            }
-                            else{
+                            } else {
                                 System.out.println("Enter Correct Value");
                             }
                         }
@@ -137,14 +135,14 @@ public class Character implements CharacterInterface {
                         this.positionProcessing();
                         break;
 
-                    }else {
+                    } else {
                         System.out.println("Enter correct value");
                     }
                 }
             }
         }
 
-        else {                                         // it is in property
+        else { // it is in property
             System.out.println("You are In : ");
             chPosition.toString();
 
@@ -204,11 +202,11 @@ public class Character implements CharacterInterface {
         }
     }
 
-    public static Character searchCharacterByUser(User user){
+    public static Character searchCharacterByUser(User user) {
         Character character = null;
         for (Character x : Data.characters) {
-            if(x.getUserInfo().equals(user)){
-                character = x;           //return character of user
+            if (x.getUserInfo().equals(user)) {
+                character = x; // return character of user
                 break;
             }
         }

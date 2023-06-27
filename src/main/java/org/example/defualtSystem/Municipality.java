@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class Municipality implements MunicipalityInterface {
     private ArrayList<Property> properties;
 
-    public  Municipality(){
+    public Municipality() {
         generateProperties();
     }
 
     private void generateProperties() {
-        for (int i=0;i<7;i++) {
+        for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
-                Property property = new Property(new float[]{7, 14}, new float[]{7*i,16*j},null);
+                Property property = new Property(new float[] { 7, 14 }, new float[] { 7 * i, 16 * j }, null);
                 properties.add(property);
                 Data.properties.add(property);
             }
@@ -29,10 +29,10 @@ public class Municipality implements MunicipalityInterface {
     @Override
     public void buyProperty(Property property, Character buyer, Character seller) {
         if (seller == null) {
-            if (buyer.getAccount().withdraw(buyer, (120/100)*property.getPrice())) {
+            if (buyer.getAccount().withdraw(buyer, (120 / 100) * property.getPrice())) {
                 System.out.println("\tYou Bought This property Successfully");
                 property.setOwner(buyer);
-                property.setPrice((120/100)*property.getPrice());
+                property.setPrice((120 / 100) * property.getPrice());
                 buyer.properties.add(property);
                 Database.WriteData();
                 Menu.userMenu(buyer.getUserInfo());
@@ -40,19 +40,18 @@ public class Municipality implements MunicipalityInterface {
                 System.out.println("Not Enough Money");
                 Menu.userMenu(buyer.getUserInfo());
             }
-        }
-        else{
+        } else {
             seller = property.getOwner();
-            if (buyer.getAccount().withdraw(buyer, (120/100)*property.getPrice())){
-                System.out.println("\tYou Bought This property Successfully From : "+ seller.getUserInfo().getUsername());
+            if (buyer.getAccount().withdraw(buyer, (120 / 100) * property.getPrice())) {
+                System.out.println(
+                        "\tYou Bought This property Successfully From : " + seller.getUserInfo().getUsername());
                 property.setOwner(buyer);
-                property.setPrice((120/100)*property.getPrice());
+                property.setPrice((120 / 100) * property.getPrice());
                 seller.properties.remove(property);
                 buyer.properties.add(property);
                 Database.WriteData();
                 Menu.userMenu(buyer.getUserInfo());
-            }
-            else{
+            } else {
                 System.out.println("Not Enough Money");
                 Menu.userMenu(buyer.getUserInfo());
             }
@@ -71,11 +70,11 @@ public class Municipality implements MunicipalityInterface {
 
     @Override
     public void showProperties() {
-        for (Property p : properties){
+        for (Property p : properties) {
             System.out.println("ID : " + p.getPropertyID());
-            System.out.println("owner : "+ p.getOwner());
+            System.out.println("owner : " + p.getOwner());
             System.out.println("scales : " + p.getScales());
-            System.out.println("coordinates : "+ p.getCoordinate());
+            System.out.println("coordinates : " + p.getCoordinate());
         }
     }
 }
