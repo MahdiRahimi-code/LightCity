@@ -86,6 +86,8 @@ public class Character implements CharacterInterface {
 
                 //some Bank options
                 //employee
+                //see account
+
             }
 
             else{    // it is in shop
@@ -152,7 +154,7 @@ public class Character implements CharacterInterface {
                 int awnser = input.nextInt();
                 while (true) {
                     if (awnser == 1) {
-                        Data.municipalities.get(0).sellProperty(chPosition, this);
+                        Data.municipalities.get(0).buyProperty(chPosition, this, chPosition.getOwner());
                         break;
                     } else if (awnser == 2) {
                         Menu.userMenu(this.userInfo);
@@ -170,7 +172,7 @@ public class Character implements CharacterInterface {
                 int awnser1 = input.nextInt();
                 while (true) {
                     if (awnser1 == 1) {
-                        Data.municipalities.get(0).sellOwnProperty(chPosition, this);
+                        Data.municipalities.get(0).sellProperty(chPosition, this);
                         break;
                     } else if (awnser1 == 2) {
                         Menu.userMenu(this.userInfo);
@@ -188,7 +190,7 @@ public class Character implements CharacterInterface {
                 int awnser2 = input.nextInt();
                 while (true) {
                     if (awnser2 == 1) {
-                        Data.municipalities.get(0).buyProperty(chPosition, this);
+                        Data.municipalities.get(0).buyProperty(chPosition, this, null);
                         break;
                     } else if (awnser2 == 2) {
                         Menu.userMenu(this.userInfo);

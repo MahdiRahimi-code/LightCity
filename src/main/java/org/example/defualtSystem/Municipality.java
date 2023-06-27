@@ -27,31 +27,31 @@ public class Municipality implements MunicipalityInterface {
     }
 
     @Override
-    public void buyProperty(Property property, Character buyer) {
-        //paying money
+    public void buyProperty(Property property, Character buyer, Character seller) {
+        if (seller == null) {
+            //paying money
 
-        System.out.println("\tYou Bought This property Successfully");
-        property.setOwner(buyer);
-        buyer.properties.add(property);
-        Database.WriteData();
-        Menu.userMenu(buyer.getUserInfo());
+            System.out.println("\tYou Bought This property Successfully");
+            property.setOwner(buyer);
+            buyer.properties.add(property);
+            Database.WriteData();
+            Menu.userMenu(buyer.getUserInfo());
+        }
+        else{
+            //paying money
+
+            seller = property.getOwner();
+            System.out.println("\tYou Bought This property Successfully From : "+ seller.getUserInfo().getUsername());
+            property.setOwner(buyer);
+            seller.properties.remove(property);
+            buyer.properties.add(property);
+            Database.WriteData();
+            Menu.userMenu(buyer.getUserInfo());
+        }
     }
 
     @Override
-    public void sellProperty(Property property, Character buyer) {
-        //paying money
-
-        Character seller = property.getOwner();
-        System.out.println("\tYou Bought This property Successfully From : "+ seller.getUserInfo().getUsername());
-        property.setOwner(buyer);
-        seller.properties.remove(property);
-        buyer.properties.add(property);
-        Database.WriteData();
-        Menu.userMenu(buyer.getUserInfo());
-    }
-
-    @Override
-    public void sellOwnProperty(Property property, Character character){
+    public void sellProperty(Property property, Character character) {
         //paying money
 
         System.out.println("\tYou Sold This property Successfully");
