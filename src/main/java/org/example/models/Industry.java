@@ -1,13 +1,15 @@
 package org.example.models;
 
+import org.example.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Industry extends Property{
-    private String title;
-    private float income;
+    protected String title;
+    protected float income;
     private static int ID =0;
-    private int IndustryID;
+    protected int IndustryID;
     protected ArrayList<Employee> employees = new ArrayList<>();
 
     /**
@@ -23,6 +25,7 @@ public class Industry extends Property{
         startPaySalary();
         ID++;
         IndustryID=ID;
+        Data.industries.add(this);
     }
 
     public String getTitle() {

@@ -37,16 +37,27 @@ public class Menu {
         System.out.println("5 : Exit");
         int awnser = scanner.nextInt();
 
-        if (awnser == 1){
-            goTo(user);
-        } else if (awnser == 2) {
-
-        } else if (awnser == 3) {
-            Dashboard(user);
-        } else if (awnser == 4) {
-            Life(user);
-        } else if (awnser == 5) {
-            Exit(user);
+        while (true) {
+            if (awnser == 1) {
+                goTo(user);
+                break;
+            } else if (awnser == 2) {
+                Character character = Character.searchCharacterByUser(user);
+                character.positionProcessing();
+                break;
+            } else if (awnser == 3) {
+                Dashboard(user);
+                break;
+            } else if (awnser == 4) {
+                Life(user);
+                break;
+            } else if (awnser == 5) {
+                Exit(user);
+                break;
+            }
+            else{
+                System.out.println("Enter correct Value");
+            }
         }
     }
 
@@ -106,7 +117,7 @@ public class Menu {
                     System.out.println("No Property Found");
                 } else {
                     character.gotToLocation(searchByID(id));
-                    character.positionProcessing(searchByID(id));
+                    character.positionProcessing();
                     break;
                 }
             }
@@ -129,7 +140,7 @@ public class Menu {
                 }
                 else{
                     character.gotToLocation(searchByLocation(coordinateX, coordinateY));
-                    character.positionProcessing(searchByLocation(coordinateX, coordinateY));
+                    character.positionProcessing();
                     break;
                 }
             }

@@ -5,7 +5,6 @@ import org.example.models.Industry;
 import org.example.models.Property;
 
 public interface CharacterInterface {
-    void positionProcessing(Property property);
-    void positionProcessing(Industry industry);
+    void positionProcessing();
 
 }

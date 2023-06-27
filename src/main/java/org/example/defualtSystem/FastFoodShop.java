@@ -20,6 +20,10 @@ public class FastFoodShop extends Industry {
     private static final float EMPLOYEE_INCOME = 0.02f;
     private ArrayList<Food> foods;
 
+    public float getEmployeeIncome(){
+        return EMPLOYEE_INCOME;
+    }
+
     public FastFoodShop(String title, Property property, Character character) {
         super(title, property, character,EMPLOYEE_INCOME);
         foods = new ArrayList<>();
@@ -62,4 +66,6 @@ public class FastFoodShop extends Industry {
             foods.add(new Food(foodTitles[i], 0.4f, 0.4f));
         }
     }
+
+
 }

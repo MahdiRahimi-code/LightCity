@@ -1,5 +1,6 @@
 package org.example.defualtSystem;
 
+import org.example.Data;
 import org.example.interfaces.BankInterface;
 import org.example.models.*;
 import org.example.models.Character;
@@ -8,11 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Bank extends Industry implements BankInterface {
-
     private static final int MAX_EMPLOYEE_COUNT = 5;
     private static final float BASE_EMP_SALARY = 0.5f;
     private ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
-
     private Manager manager = null;
 
     public static BankTurnover turnover;
