@@ -2,6 +2,7 @@ package org.example.models;
 
 import org.example.Data;
 import org.example.Database;
+import org.example.Menu;
 import org.example.defualtSystem.*;
 import org.example.interfaces.CityInterface;
 
@@ -36,8 +37,10 @@ public class City implements CityInterface {
     public void joinCharacter(User userinfo) {
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
         Character character = new Character(userinfo, newAccount, new Life(), null, null, null);
+        character.gotToLocation(Menu.searchByID(1));
         Data.characters.add(character);
         characters.add(character);
+        Database.WriteData();
         beginGame(character);
     }
 

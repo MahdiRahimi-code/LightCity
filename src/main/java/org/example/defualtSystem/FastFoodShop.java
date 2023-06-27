@@ -45,12 +45,18 @@ public class FastFoodShop extends Industry {
                     Menu.userMenu(character.getUserInfo());
                     break;
                 } else if (answer > 0 && answer < 6) {
-                    //cost the money
-                    character.foods.add(foods.get(answer-1));
-                    foods.remove(answer-1);
-                    Database.WriteData();
-                    System.out.println("You bought Food");
-                    Menu.userMenu(character.getUserInfo());
+                    if (character.getAccount().withdraw(character, 0.01f)){
+                        character.foods.add(foods.get(answer-1));
+                        foods.remove(answer-1);
+                        Database.WriteData();
+                        System.out.println("You bought Food");
+                        Menu.userMenu(character.getUserInfo());
+                    }
+                    else{
+                        System.out.println("Not Enough Money");
+                        Menu.userMenu(character.getUserInfo());
+                    }
+
                 }
                 else{
                     System.out.println("Enter correct value");
