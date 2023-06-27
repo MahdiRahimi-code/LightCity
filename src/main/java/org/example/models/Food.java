@@ -1,11 +1,9 @@
 package org.example.models;
 
 public class Food {
-
     private String title;
     private final float water;
     private final float food;
-
     public boolean available = true;
 
     public Food(String title,float food,float water) {
