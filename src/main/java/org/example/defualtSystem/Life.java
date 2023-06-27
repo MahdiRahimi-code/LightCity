@@ -41,10 +41,10 @@ public class Life {
 
 
     public void foodConsumption(Food product){
-        if(product.available){
+        
             water+=product.getWater();
             food +=product.getFood();
-        }
+        
     }
 
     public void liquidConsumption(Liquid product){
