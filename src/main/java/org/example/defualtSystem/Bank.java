@@ -1,6 +1,7 @@
 package org.example.defualtSystem;
 
 import org.example.Data;
+import org.example.Database;
 import org.example.interfaces.BankInterface;
 import org.example.models.*;
 import org.example.models.Character;
@@ -13,8 +14,8 @@ public class Bank extends Industry implements BankInterface {
     private static final float BASE_EMP_SALARY = 0.5f;
     private ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
     private Manager manager = null;
-
     public static BankTurnover turnover;
+    public static BankAccount account;
 
     public Bank(Property property,Character root) {
         super("Bank",property,root,100.0f);
@@ -22,9 +23,9 @@ public class Bank extends Industry implements BankInterface {
     }
 
     public BankAccount newAccount(String username,String password){
-        BankAccount bankAccount = new BankAccount(username,password,0,new Date());
-        accounts.add(bankAccount);
-        return bankAccount;
+        account = new BankAccount(username,password,0,new Date());
+        accounts.add(account);
+        return account;
     }
     public boolean registerAsEmp(Character character){
         if(employees.size() >= MAX_EMPLOYEE_COUNT)return false;

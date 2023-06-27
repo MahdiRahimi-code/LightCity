@@ -87,6 +87,7 @@ public class Character implements CharacterInterface {
                 //some Bank options
                 //employee
                 //see account
+                //stock Market detail
 
             }
 
@@ -110,8 +111,8 @@ public class Character implements CharacterInterface {
                                 fastFoodShop.getEmployee().add(new Employee(this.userInfo.getUsername(), fastFoodShop,
                                         fastFoodShop.getEmployeeIncome(), this.account));
                                 System.out.println("You Have Successfully Registered As Employee");
-                                Menu.userMenu(this.userInfo);
                                 Database.WriteData();
+                                Menu.userMenu(this.userInfo);
                                 break;
 
                             }
