@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.models;           //edited
 
 import org.example.Data;
 import org.example.Database;
@@ -144,7 +144,7 @@ public class Character implements CharacterInterface {
             }
         }
 
-        else {   // it is in property
+        else {                                         // it is in property
             System.out.println("You are In : ");
             chPosition.toString();
 
@@ -158,7 +158,7 @@ public class Character implements CharacterInterface {
                         Data.municipalities.get(0).buyProperty(chPosition, this, chPosition.getOwner());
                         break;
                     } else if (awnser == 2) {
-                        Menu.userMenu(this.userInfo);
+                        this.positionProcessing();
                         break;
                     } else {
                         System.out.println("Incorrect Input");

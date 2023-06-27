@@ -38,6 +38,7 @@ public class City implements CityInterface {
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
         Character character = new Character(userinfo, newAccount, new Life(), null, null, null);
         character.gotToLocation(Menu.searchByID(1));
+        character.getAccount().deposit(character, 10);
         Data.characters.add(character);
         characters.add(character);
         Database.WriteData();

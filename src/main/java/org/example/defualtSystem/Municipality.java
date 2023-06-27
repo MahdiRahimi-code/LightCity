@@ -29,32 +29,40 @@ public class Municipality implements MunicipalityInterface {
     @Override
     public void buyProperty(Property property, Character buyer, Character seller) {
         if (seller == null) {
-            //paying money
-
-            System.out.println("\tYou Bought This property Successfully");
-            property.setOwner(buyer);
-            buyer.properties.add(property);
-            Database.WriteData();
-            Menu.userMenu(buyer.getUserInfo());
+            if (buyer.getAccount().withdraw(buyer, (120/100)*property.getPrice())) {
+                System.out.println("\tYou Bought This property Successfully");
+                property.setOwner(buyer);
+                property.setPrice((120/100)*property.getPrice());
+                buyer.properties.add(property);
+                Database.WriteData();
+                Menu.userMenu(buyer.getUserInfo());
+            } else {
+                System.out.println("Not Enough Money");
+                Menu.userMenu(buyer.getUserInfo());
+            }
         }
         else{
-            //paying money
-
             seller = property.getOwner();
-            System.out.println("\tYou Bought This property Successfully From : "+ seller.getUserInfo().getUsername());
-            property.setOwner(buyer);
-            seller.properties.remove(property);
-            buyer.properties.add(property);
-            Database.WriteData();
-            Menu.userMenu(buyer.getUserInfo());
+            if (buyer.getAccount().withdraw(buyer, (120/100)*property.getPrice())){
+                System.out.println("\tYou Bought This property Successfully From : "+ seller.getUserInfo().getUsername());
+                property.setOwner(buyer);
+                property.setPrice((120/100)*property.getPrice());
+                seller.properties.remove(property);
+                buyer.properties.add(property);
+                Database.WriteData();
+                Menu.userMenu(buyer.getUserInfo());
+            }
+            else{
+                System.out.println("Not Enough Money");
+                Menu.userMenu(buyer.getUserInfo());
+            }
         }
     }
 
     @Override
     public void sellProperty(Property property, Character character) {
-        //paying money
-
         System.out.println("\tYou Sold This property Successfully");
+        character.getAccount().deposit(character, property.getPrice());
         property.setOwner(null);
         character.properties.remove(property);
         Database.WriteData();
