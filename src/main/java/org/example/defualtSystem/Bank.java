@@ -12,18 +12,17 @@ import java.util.Date;
 public class Bank extends Industry implements BankInterface {
     private static final int MAX_EMPLOYEE_COUNT = 5;
     private static final float BASE_EMP_SALARY = 0.5f;
-    private ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
+    private static ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
     private Manager manager = null;
     public static BankTurnover turnover;
-    public static BankAccount account;
 
     public Bank(Property property,Character root) {
         super("Bank",property,root,100.0f);
-//        turnover = new BankTurnover();
+        turnover = new BankTurnover(0,0);
     }
 
     public BankAccount newAccount(String username,String password){
-        account = new BankAccount(username,password,0,new Date());
+        BankAccount account = new BankAccount(username,password,0,new Date());
         accounts.add(account);
         return account;
     }
@@ -40,5 +39,9 @@ public class Bank extends Industry implements BankInterface {
             return "";
         }
         return "Only Manager can see Bank detail";
+    }
+
+    public static ArrayList<BankAccount> getAccounts() {
+        return accounts;
     }
 }

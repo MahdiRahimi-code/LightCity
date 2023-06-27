@@ -56,6 +56,8 @@ public class BankAccount {
         if(character.getUserInfo().getUsername().equals(owner)){
             if(amount <= money){
                 Bank.turnover.transfer(amount,-1);
+                Date now = new Date();
+                lastChange = now;
                 money-= amount;
                 return true;
             }else
@@ -68,6 +70,8 @@ public class BankAccount {
             String log = String.format("User : %s deposit %f \n",character.getUserInfo().getUsername(),amount);
             logs+=log;
             Bank.turnover.transfer(amount,1);
+            Date now = new Date();
+            lastChange = now;
             money += amount;
             return true;
         }

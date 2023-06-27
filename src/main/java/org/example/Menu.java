@@ -180,7 +180,7 @@ public class Menu {
         System.out.println("4 : Exit");
     }
 
-    private static Industry searchByTitle(String title){
+    public static Industry searchByTitle(String title){
         Industry k = null;
         for (Industry x : Data.industries) {
             if(x.getTitle().equals(title)){
@@ -191,7 +191,7 @@ public class Menu {
         return k;
     }
 
-    private static Property searchByID(int id){
+    public static Property searchByID(int id){
         Property k = null ;
         for (Property x : Data.properties) {
             if (x.getPropertyID() == id){
@@ -202,7 +202,7 @@ public class Menu {
         return k;
     }
 
-    private static Property searchByLocation(float x , float y){
+    public static Property searchByLocation(float x , float y){
         Property k = null;
         for (Property w : Data.properties) {
             if (x<=w.getCoordinate()[0] && w.getCoordinate()[0]+w.getScales()[0]>=x && y<=w.getCoordinate()[1] && w.getScales()[1]+w.getCoordinate()[1]>=y){
