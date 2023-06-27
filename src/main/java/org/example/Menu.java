@@ -300,8 +300,34 @@ public class Menu {
         if (select == 1) {
             System.out.println(k.getSleep() + "%" + k.getWater() + "%" + k.getFood() + "%");
         } else if (select == 2) {
-            k.startConsuming();
+
         } else if (select == 3) {
+            if (character.foods.size() > 0){
+                k.foodConsumption(character.foods.get(0));
+                character.foods.remove(0);
+            }
+            else{
+                System.out.println("You don't have enough foods");
+                System.out.println("Would you like to go buy some food?");
+                System.out.println("1.YES \n 2.NO");
+                int ar = scanner.nextInt();
+                if (ar == 1){
+                    character.gotToLocation(Menu.searchByTitle("Shop"));
+                    character.positionProcessing(); 
+                }
+                else if(ar == 2){
+                    System.out.println("Are you sure?");
+                    System.out.println("1.YES \n 2.NO");
+                    int ar1 = scanner.nextInt();
+                    if (ar1==1){
+                        userMenu(user);
+                    }
+                    else{
+                    character.gotToLocation(Menu.searchByTitle("Shop"));
+                    character.positionProcessing();
+                    }
+                }
+            }
 
         }
 
