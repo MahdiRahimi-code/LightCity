@@ -11,6 +11,7 @@ public class Data {
     public static ArrayList<Bank> banks =new ArrayList<>();
     public static ArrayList<BankTurnover> bankTurnovers = new ArrayList<>();
     public static ArrayList<FastFoodShop> fastFoodShops = new ArrayList<>();
+    public static ArrayList<BankAccount> bankAccounts = new ArrayList<>();
     public static ArrayList<Life> lives = new ArrayList<>();
     public static ArrayList<Municipality> municipalities = new ArrayList<>();
     public static ArrayList<StockMarket> stockMarkets = new ArrayList<>();

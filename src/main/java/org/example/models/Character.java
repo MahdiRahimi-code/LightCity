@@ -93,7 +93,7 @@ public class Character implements CharacterInterface {
 
             }
 
-            else { // it is in shop
+            else {                           // it is in shop
                 FastFoodShop fastFoodShop = Data.fastFoodShops.get(0);
                 System.out.println("You Are IN : " + fastFoodShop.getTitle());
                 System.out.println("Options : (0 to back)");
@@ -112,6 +112,7 @@ public class Character implements CharacterInterface {
                                 fastFoodShop.getEmployee().add(new Employee(this.userInfo.getUsername(), fastFoodShop,
                                         fastFoodShop.getEmployeeIncome(), this.account));
                                 System.out.println("You Have Successfully Registered As Employee");
+                                this.job = new Job("ShopEmployee", fastFoodShop.getEmployeeIncome(), fastFoodShop.getIndustryID());
                                 Database.WriteData();
                                 Menu.userMenu(this.userInfo);
                                 break;

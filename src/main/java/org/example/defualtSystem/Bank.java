@@ -24,6 +24,7 @@ public class Bank extends Industry implements BankInterface {
     public BankAccount newAccount(String username, String password) {
         BankAccount account = new BankAccount(username, password, 0, new Date());
         accounts.add(account);
+        Data.bankAccounts.add(account);
         return account;
     }
 
