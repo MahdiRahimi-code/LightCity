@@ -28,9 +28,9 @@ public class Character implements CharacterInterface {
         this.account = account;
         this.life = life;
         this.job = job;
+        this.properties = new ArrayList<>();
         this.properties = properties;
         this.inPosition = inPosition;
-        properties = new ArrayList<>();
         foods = new ArrayList<>();
         ID++;
         characterID = ID;
@@ -72,7 +72,6 @@ public class Character implements CharacterInterface {
         if (destination == null)
             return;
         inPosition = destination;
-        Database.WriteData();
     }
 
     @Override
@@ -113,7 +112,6 @@ public class Character implements CharacterInterface {
                                         fastFoodShop.getEmployeeIncome(), this.account));
                                 System.out.println("You Have Successfully Registered As Employee");
                                 this.job = new Job("ShopEmployee", fastFoodShop.getEmployeeIncome(), fastFoodShop.getIndustryID());
-                                Database.WriteData();
                                 Menu.userMenu(this.userInfo);
                                 break;
 
@@ -145,11 +143,11 @@ public class Character implements CharacterInterface {
 
         else { // it is in property
             System.out.println("You are In : ");
-            chPosition.toString();
+            System.out.println("Property ID : " + chPosition.getPropertyID());
 
             if (chPosition.getOwner() != null) {
                 System.out.println("This Property Belongs To : " + chPosition.getOwner());
-                System.out.printf("\tPrice : %f", chPosition.getPrice());
+                System.out.printf("\tPrice : %f\n", chPosition.getPrice());
                 System.out.println("Do You Want To Buy It ? (1:YES/2:NO)");
                 int awnser = input.nextInt();
                 while (true) {
@@ -165,6 +163,22 @@ public class Character implements CharacterInterface {
                 }
 
                 Menu.userMenu(this.userInfo);
+            } else if (chPosition.getOwner() == null){
+                System.out.println("You can Buy This Property");
+                System.out.printf("\tPrice : %f", chPosition.getPrice());
+                System.out.println("Do You Want To Buy It ? (1:YES/2:NO)");
+                int awnser2 = input.nextInt();
+                while (true) {
+                    if (awnser2 == 1) {
+                        Data.municipalities.get(0).buyProperty(chPosition, this, null);
+                        break;
+                    } else if (awnser2 == 2) {
+                        Menu.userMenu(this.userInfo);
+                        break;
+                    } else {
+                        System.out.println("Incorrect Input");
+                    }
+                }
             } else if (chPosition.getOwner().equals(this)) {
                 System.out.println("This is your Property");
                 System.out.printf("\tPrice : %f", chPosition.getPrice());
@@ -183,22 +197,6 @@ public class Character implements CharacterInterface {
                 }
 
                 Menu.userMenu(this.userInfo);
-            } else {
-                System.out.println("You can Buy This Property");
-                System.out.printf("\tPrice : %f", chPosition.getPrice());
-                System.out.println("Do You Want To Buy It ? (1:YES/2:NO)");
-                int awnser2 = input.nextInt();
-                while (true) {
-                    if (awnser2 == 1) {
-                        Data.municipalities.get(0).buyProperty(chPosition, this, null);
-                        break;
-                    } else if (awnser2 == 2) {
-                        Menu.userMenu(this.userInfo);
-                        break;
-                    } else {
-                        System.out.println("Incorrect Input");
-                    }
-                }
             }
         }
     }

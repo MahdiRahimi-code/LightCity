@@ -32,7 +32,7 @@ public class Game implements GameInterface {
                 generateNewCity();
                 city.joinCharacter(user);
                 Data.cities.add(city);
-                Database.WriteData();
+                Database.dataWrite();
             }
         } else {
             System.out.println("User not found");
