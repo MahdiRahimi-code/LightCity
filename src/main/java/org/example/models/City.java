@@ -36,7 +36,8 @@ public class City implements CityInterface {
     @Override
     public void joinCharacter(User userinfo) {
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
-        Character character = new Character(userinfo, newAccount, new Life(), null, null, null);
+        ArrayList<Property> properties = new ArrayList<>();
+        Character character = new Character(userinfo, newAccount, new Life(), null, properties, null);
         character.gotToLocation(Menu.searchByID(1));
         character.getAccount().deposit(character, 10);
         Data.characters.add(character);
