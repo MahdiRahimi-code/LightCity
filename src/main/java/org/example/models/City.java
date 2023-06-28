@@ -41,6 +41,7 @@ public class City implements CityInterface {
         character.gotToLocation(Menu.searchByID(1));
         character.getAccount().deposit(character, 10);
         Data.characters.add(character);
+        stockMarket.registerUser(userinfo.getUsername(), 0.0f);
         characters.add(character);
         beginGame(character);
     }

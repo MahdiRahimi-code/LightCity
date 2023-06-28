@@ -80,14 +80,105 @@ public class Character implements CharacterInterface {
         if (chPosition.getCoordinate()[0] >= 42 && chPosition.getCoordinate()[0] <= 54) { // it is in industry
 
             if (chPosition.getCoordinate()[1] >= 32 && chPosition.getCoordinate()[1] <= 64) { // it is in bank
+                Scanner scanner = new Scanner(System.in);
                 Bank bank = Data.banks.get(0);
-                System.out.println("You Are IN : " + bank.getTitle());
+                System.out.println("You Are In : " + bank.getTitle());
 
-                // some Bank options
-                // employee
-                // see account
-                // stock Market detail
+                System.out.println("1 : Sign in AS Employee");
+                System.out.println("2 : See Your Bank Account");
+                System.out.println("3 : See Stock Market Account Detail");
+                System.out.println("4 : Deposit Stock Market Money");
+                System.out.println("5 : Withdraw Stock Market Money");
+                System.out.println("6 : Back");
 
+                while (true) {
+                    System.out.println("Your choice : ");
+                    int result = scanner.nextInt();
+                    if (result == 1) {
+                        System.out.println("You want to Work As an Employee in : " + bank.getTitle());
+                        System.out.println("Here Is The Income : " + bank.getBaseEmpSalary());
+                        System.out.println("Are You Sure ? (1:Yes/2:No/3:Back)");
+                        int select = input.nextInt();
+
+                        while (true) {
+                            if (select == 1) {
+                                bank.registerAsEmp(this);
+                                System.out.println("You Have Successfully Registered As Employee");
+                                Menu.userMenu(this.userInfo);
+                                break;
+
+                            } else if (select == 2) {
+                                this.positionProcessing();
+                                break;
+
+                            } else if (select == 3) {
+                                Menu.userMenu(this.getUserInfo());
+                                break;
+
+                            } else {
+                                System.out.println("Enter Correct Value");
+                            }
+                        }
+                        break;
+                    }
+                    else if (result == 2) {
+                        System.out.println(this.getAccount().toString());
+                        Menu.userMenu(this.userInfo);
+                        break;
+                    }
+                    else if (result == 3) {
+                        if (Data.stockMarkets.get(0).getDetail(this.userInfo.getUsername()) == 0){
+                            System.out.println("No Account Found");
+                            Menu.userMenu(this.userInfo);
+                            break;
+                        }
+                        else {
+                            System.out.println("Your Amount : " + Data.stockMarkets.get(0).getDetail(this.userInfo.getUsername()));
+                            break;
+                        }
+
+                    }
+                    else if (result == 4) {
+                        Scanner floatInput = new Scanner(System.in);
+                        System.out.println("Amount : ");
+                        float money = floatInput.nextFloat();
+
+                        if (this.account.withdraw(this, money)){
+                            Data.stockMarkets.get(0).depositCapital(this.userInfo.getUsername(), money);
+                            System.out.println("Money Withdraw For Stock Market Successful");
+                            Menu.userMenu(this.userInfo);
+                            break;
+                        }
+                        else{
+                            System.out.println("Not Enough Money");
+                            Menu.userMenu(this.userInfo);
+                            break;
+                        }
+                    }
+                    else if (result == 5) {
+                        Scanner floatInput = new Scanner(System.in);
+                        System.out.println("Amount : ");
+                        float money = floatInput.nextFloat();
+
+                        if (Data.stockMarkets.get(0).withdrawCapital(this.userInfo.getUsername()) == 0.0){
+                            System.out.println("User Not Found");
+                            Menu.userMenu(this.userInfo);
+                            break;
+                        }
+                        else{
+                            this.account.deposit(this, money);
+                            System.out.println("Money Deposit to Bank Account Successful");
+                            Menu.userMenu(this.userInfo);
+                            break;
+                        }
+
+                    } else if (result == 6) {
+                        this.positionProcessing();
+                        break;
+                    } else {
+                        System.out.println("Enter Correct Value");
+                    }
+                }
             }
 
             else {                           // it is in shop
@@ -110,6 +201,7 @@ public class Character implements CharacterInterface {
                                         fastFoodShop.getEmployeeIncome(), this.account));
                                 System.out.println("You Have Successfully Registered As Employee");
                                 this.job = new Job("ShopEmployee", fastFoodShop.getEmployeeIncome(), fastFoodShop.getIndustryID());
+                                Data.jobs.add(job);
                                 Menu.userMenu(this.userInfo);
                                 break;
 
@@ -164,7 +256,7 @@ public class Character implements CharacterInterface {
                     Menu.userMenu(this.userInfo);
                 }
                   else {
-                      System.out.println("This Property Belongs To : " + chPosition.getOwner());
+                      System.out.println("This Property Belongs To : " + chPosition.getOwner().getUserInfo().getUsername());
                       System.out.printf("\tPrice : %f\n", chPosition.getPrice());
                       System.out.println("Do You Want To Buy It ? (1:YES/2:NO)");
                       int awnsers = input.nextInt();

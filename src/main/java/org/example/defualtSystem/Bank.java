@@ -33,7 +33,10 @@ public class Bank extends Industry implements BankInterface {
             return false;
         Employee employee = new Employee(character.getUserInfo().getUsername(), this, BASE_EMP_SALARY,
                 character.getAccount());
+        Job job = new Job("BankEmployee", this.BASE_EMP_SALARY, this.IndustryID);
+        Data.jobs.add(job);
         employees.add(employee);
+        Data.employees.add(employee);
         return true;
     }
 
@@ -46,5 +49,9 @@ public class Bank extends Industry implements BankInterface {
 
     public static ArrayList<BankAccount> getAccounts() {
         return accounts;
+    }
+
+    public float getBaseEmpSalary(){
+        return BASE_EMP_SALARY;
     }
 }

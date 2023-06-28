@@ -20,6 +20,12 @@ public class StockMarket {
         }
     }
 
+    public synchronized void registerUser(String userName, double initialCapital) {
+        if (!users.containsKey(userName)) {
+            users.put(userName, initialCapital);
+        }
+    }
+
     public synchronized double getDetail(String userName) {
         if (users.containsKey(userName)) {
             return users.get(userName);
