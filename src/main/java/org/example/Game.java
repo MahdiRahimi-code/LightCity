@@ -48,10 +48,10 @@ public class Game implements GameInterface {
     @Override
     public void startGame(User user) {
         Data.users.add(user);
-        Database.WriteData();
         generateNewCity();
         Data.cities.add(city);
         city.joinCharacter(user);
+        Database.WriteData();
     }
 
     /**

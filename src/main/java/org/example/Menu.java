@@ -24,8 +24,6 @@ public class Menu {
             joinServer();
         } else if (next.equals("4"))
             System.exit(0);
-
-        userMenu(loginMenu());
     }
 
     public static void userMenu(User user) {
@@ -76,6 +74,7 @@ public class Menu {
         String password = scanner.next();
 
         User user = new User(username, password);
+        Data.users.add(user);
         return user;
     }
 
