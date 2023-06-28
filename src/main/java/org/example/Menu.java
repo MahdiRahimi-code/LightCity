@@ -72,7 +72,6 @@ public class Menu {
         String username = scanner.next();
         System.out.println("Enter your password : ");
         String password = scanner.next();
-
         User user = new User(username, password);
         return user;
     }
@@ -249,23 +248,43 @@ public class Menu {
                     break;
                 }
             }
-            ShowEconomy();
-            int select2 = scanner.nextInt();
-            if (select2 == 1) {
-                System.out.println(k.getIncome());
-            } else if (select2 == 2) {
-                System.out.println("Employee of" + k.getTitle());
-            } else if (select2 == 3) {
+            if (k != null) {
+                ShowEconomy();
+                int select2 = scanner.nextInt();
+                if (select2 == 1) {
+                    System.out.println(k.getIncome());
+                } else if (select2 == 2) {
+                    System.out.println("Employee of" + k.getTitle());
+                } else if (select2 == 3) {
+                }
+            } else {
+                System.out.println("you don't have any job bro");
+                System.out.println("Do you want to find a job?");
+                System.out.println("1:YES \n 2:NO");
+                int select3 = scanner.nextInt();
+                if (select3 == 1) {
+                    for (Industry x : Data.industries) {
+                        System.out.println(x.getTitle());
+                    }
+                    System.out.println("Enter the title of the Industry you want to work for : ");
+                    String work = scanner.nextLine();
+                    character.gotToLocation(searchByTitle(work));
+                } else if (select3 == 2) {
+                    System.out.println("idiot");
+                    userMenu(user);
+                }
+
             }
+
         }
 
     }
 
     private static void ShowProperties() {
         System.out.println("I : Show properties");
-        System.out.println("II : Sell");
-        System.out.println("III : Management");
-        System.out.println("IV : Found Industry");
+        System.out.println("II : Management");
+        System.out.println("III : Found Industry");
+        System.out.println("IV : Exit");
     }
 
     private static void MenuDashboard() {
