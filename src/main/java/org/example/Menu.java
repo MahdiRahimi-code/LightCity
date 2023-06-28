@@ -154,7 +154,8 @@ public class Menu {
                     System.out.println("No Industry Found");
                 } else {
                     character.gotToLocation(searchByTitle(title));
-
+                    character.positionProcessing();
+                    break;
                 }
             }
         }
