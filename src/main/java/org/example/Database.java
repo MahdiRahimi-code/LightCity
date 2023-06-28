@@ -21,7 +21,7 @@ public class Database {
             Class.forName(JDBC_DRIVER);
             System.out.println("Connecting to database...");
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/lightcity", "root", "qwerty");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lightcity", "root", "M13831383mR");
             Statement stmt = conn.createStatement();
 
             stmt.execute("USE lightcity");
@@ -75,8 +75,8 @@ public class Database {
 
     public static void dataWrite() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/lightcity",
-                    "root", "qwerty");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lightcity",
+                    "root", "M13831383mR");
 
             Statement statement = connection.createStatement();
 

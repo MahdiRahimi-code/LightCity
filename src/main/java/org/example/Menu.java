@@ -72,9 +72,7 @@ public class Menu {
         String username = scanner.next();
         System.out.println("Enter your password : ");
         String password = scanner.next();
-
         User user = new User(username, password);
-        Data.users.add(user);
         return user;
     }
 

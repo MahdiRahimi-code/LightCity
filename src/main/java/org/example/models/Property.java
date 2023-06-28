@@ -14,7 +14,7 @@ public class Property {
         this.scales = scales;
         this.coordinate = coordinate;
         this.owner = owner;
-        price = (float) ((scales[0] * scales[1]) * 0.5);
+        price = (float) ((scales[0] * scales[1]) * 0.075);
         ID++;
         PropertyID = ID;
     }
@@ -53,14 +53,5 @@ public class Property {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Property{" +
-                "scales=" + Arrays.toString(scales) +
-                ", coordinate=" + Arrays.toString(coordinate) +
-                ", owner=" + owner +
-                '}';
     }
 }
