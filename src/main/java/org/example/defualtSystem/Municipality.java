@@ -17,6 +17,7 @@ public class Municipality implements MunicipalityInterface {
     }
 
     private void generateProperties() {
+        properties = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
                 Property property = new Property(new float[] { 7, 14 }, new float[] { 7 * i, 16 * j }, null);

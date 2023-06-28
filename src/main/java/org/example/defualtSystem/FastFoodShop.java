@@ -66,7 +66,7 @@ public class FastFoodShop extends Industry {
 
     public void generateFood() {
         String[] foodTitles = { "Burger", "doubleBurger", "Pizza", "hamMeat", "Sausages" };
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             foods.add(new Food(foodTitles[i], 0.4f, 0.4f));
         }
     }
