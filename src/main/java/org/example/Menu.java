@@ -268,11 +268,11 @@ public class Menu {
     }
 
     private static void MenuDashboard() {
-        System.out.println("A : My job");
-        System.out.println("B : Properties");
-        System.out.println("C : Economy");
-        System.out.println("D : Life");
-        System.out.println("E : Exit");
+        System.out.println("1 : My job");
+        System.out.println("2 : Properties");
+        System.out.println("3 : Economy");
+        System.out.println("4 : Life");
+        System.out.println("5 : Exit");
     }
 
     private static void ShowEconomy() {
