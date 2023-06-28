@@ -35,7 +35,6 @@ public class Municipality implements MunicipalityInterface {
                 property.setOwner(buyer);
                 property.setPrice((120 / 100) * property.getPrice());
                 buyer.properties.add(property);
-                Database.WriteData();
                 Menu.userMenu(buyer.getUserInfo());
             } else {
                 System.out.println("Not Enough Money");
@@ -50,7 +49,6 @@ public class Municipality implements MunicipalityInterface {
                 property.setPrice((120 / 100) * property.getPrice());
                 seller.properties.remove(property);
                 buyer.properties.add(property);
-                Database.WriteData();
                 Menu.userMenu(buyer.getUserInfo());
             } else {
                 System.out.println("Not Enough Money");
@@ -65,7 +63,6 @@ public class Municipality implements MunicipalityInterface {
         character.getAccount().deposit(character, property.getPrice());
         property.setOwner(null);
         character.properties.remove(property);
-        Database.WriteData();
         Menu.userMenu(character.getUserInfo());
     }
 

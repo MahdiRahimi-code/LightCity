@@ -74,7 +74,6 @@ public class Menu {
         String password = scanner.next();
 
         User user = new User(username, password);
-        Data.users.add(user);
         return user;
     }
 

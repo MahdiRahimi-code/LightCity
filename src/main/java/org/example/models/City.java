@@ -30,7 +30,6 @@ public class City implements CityInterface {
         Data.fastFoodShops.add(fastFoodShop);
         Data.municipalities.add(municipality);
         Data.stockMarkets.add(stockMarket);
-        Database.WriteData();
         stockMarket.startMarketSimulation();
     }
 
@@ -42,7 +41,6 @@ public class City implements CityInterface {
         character.getAccount().deposit(character, 10);
         Data.characters.add(character);
         characters.add(character);
-        Database.WriteData();
         beginGame(character);
     }
 

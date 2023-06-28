@@ -73,76 +73,34 @@ public class Database {
         }
     }
 
-    public static void WriteData(){
+    public static void dataWrite() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lightcity", "root", "M13831383mR");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lightcity",
+                    "root", "M13831383mR");
 
-            Statement statement = conn.createStatement();
+            Statement statement = connection.createStatement();
 
             statement.execute("USE lightcity");
 
-            statement.executeUpdate("DELETE FROM user");
+            String sql = "DELETE FROM user";
+            statement.executeUpdate(sql);
 
-            for (User u : Data.users){
+            for (User i : Data.users) {
+
                 String sqlQuery = "INSERT INTO user VALUES (?, ?, ?)";
 
-                PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery);
+                PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
-                preparedStatement.setInt(1, u.getUserID());
-                preparedStatement.setString(2, u.getUsername());
-                String encryptedPassword = u.getPassword().concat("@password");
-                preparedStatement.setString(3,encryptedPassword);
+                preparedStatement.setInt(1, i.getUserID());
+                preparedStatement.setString(2, i.getUsername());
+                preparedStatement.setString(3, i.getPassword());
 
+                preparedStatement.executeUpdate();
             }
 
-
-            conn.close();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e);
         }
-    }
-
-//    public Database() throws SQLException {
-//
-//    }
-    //    Tables
-
-    /**
-     * Users
-     */
-
-//    private void createTables() {
-////        query example
-//        String query = "CREATE TABLE IF NOT EXISTS Users (username varchar(255) primary key ,password varchar(255));" +
-//                "CREATE TABLE IF NOT EXISTS ....";
-//        try {
-//            Statement stmt = conn.createStatement();
-//           if(stmt.execute(query)){
-//
-//           }else
-//               System.out.println("An error accord during operation");
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//
-//    }
-
-    public void loginGame(User user) {
-        try {
-            Statement stmt = conn.createStatement();
-            String query = "";
-            ResultSet res = stmt.executeQuery(query);
-            while (res.next()) {
-//               Check
-            }
-        } catch (Exception exception) {
-        }
-
-    }
-
-    public void registerGame(User user) {
     }
 
 }

@@ -48,7 +48,6 @@ public class FastFoodShop extends Industry {
                     if (character.getAccount().withdraw(character, 0.01f)) {
                         character.foods.add(foods.get(answer - 1));
                         foods.remove(answer - 1);
-                        Database.WriteData();
                         System.out.println("You bought Food");
                         Menu.userMenu(character.getUserInfo());
                     } else {
