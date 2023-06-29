@@ -228,18 +228,27 @@ public class Menu {
         Scanner in = new Scanner(System.in);
         String select = scanner.nextLine();
         if (select.equals("a")) {
-            System.out.println(character.getJob());
+            if (character.getJob() == null){
+                System.out.println("You dont have any job");
+                Dashboard(user);
+            }
+            else {
+                System.out.println(character.getJob());
+                Dashboard(user);
+            }
         } else if (select.equals("b")) {
             ShowProperties();
             int select1 = in.nextInt();
             if (select1 == 1) {
                 if (character.properties.size() == 0) {
                     System.out.println("You dont have any property");
+                    Dashboard(user);
                 } else {
                     System.out.println("Your Properties : ");
                     for (Property p : character.properties) {
                         System.out.printf("ID : %d  /  coordinates : {x:%f , y:%f}", p.getPropertyID(), p.getCoordinate()[0], p.getCoordinate()[1]);
                     }
+                    Dashboard(user);
                 }
             }else if (select1 == 2) {
                 goTo(user);
@@ -259,9 +268,10 @@ public class Menu {
                 int select2 = scanner.nextInt();
                 if (select2 == 1) {
                     System.out.println(k.getIncome());
+                    Dashboard(user);
                 } else if (select2 == 2) {
                     System.out.println("Employee of" + k.getTitle());
-                } else if (select2 == 3) {
+                    Dashboard(user);
                 }
             } else {
                 System.out.println("you don't have any job bro");
@@ -272,9 +282,23 @@ public class Menu {
                     for (Industry x : Data.industries) {
                         System.out.println(x.getTitle());
                     }
-                    System.out.println("Enter the title of the Industry you want to work for : ");
-                    String work = scanner.nextLine();
-                    character.gotToLocation(searchByTitle(work));
+                    while (true) {
+                        Scanner input = new Scanner(System.in);
+                        System.out.println("Enter the title of the Industry you want to work for : (b : back)");
+                        String work = input.next();
+                        if (searchByTitle(work) != null) {
+                            character.gotToLocation(searchByTitle(work));
+                            character.positionProcessing();
+                            Dashboard(user);
+                            break;
+                        } else if (work.equals("b")) {
+                            Dashboard(user);
+                            break;
+                        }
+                        else {
+                            System.out.println("Wrong Job Name");
+                        }
+                    }
                 } else if (select3 == 2) {
                     System.out.println("idiot");
                     userMenu(user);
@@ -282,6 +306,13 @@ public class Menu {
 
             }
 
+        } else if (select.equals("d")) {
+            System.out.println("Food Percentage : " + character.getLife().getFood());
+            System.out.println("Liquid Percentage : " + character.getLife().getWater());
+            System.out.println("Sleep Percentage : " + character.getLife().getSleep());
+            Dashboard(user);
+        } else if (select.equals("e")){
+            userMenu(user);
         }
 
     }
@@ -303,7 +334,6 @@ public class Menu {
     private static void ShowEconomy() {
         System.out.println("I : Show Incomes");
         System.out.println("II : Show job detail");
-        System.out.println("III : How can grow?");
     }
 
     private static void Life(User user) {

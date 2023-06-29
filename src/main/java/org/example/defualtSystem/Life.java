@@ -97,4 +97,5 @@ public class Life {
     public int getLifeID() {
         return LifeID;
     }
+
 }
