@@ -26,6 +26,8 @@ public class City implements CityInterface {
         FastFoodShop fastFoodShop = new FastFoodShop("foodShop",
                 new Property(new float[] { 12, 32 }, new float[] { 42, 0 }, root), root);
         stockMarket = new StockMarket();
+        Data.industries.add(bankSystem);
+        Data.industries.add(fastFoodShop);
         Data.banks.add(bankSystem);
         Data.fastFoodShops.add(fastFoodShop);
         Data.municipalities.add(municipality);

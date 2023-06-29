@@ -173,7 +173,7 @@ public class Character implements CharacterInterface {
                         }
 
                     } else if (result == 6) {
-                        this.positionProcessing();
+                        Menu.userMenu(this.userInfo);
                         break;
                     } else {
                         System.out.println("Enter Correct Value");
@@ -184,11 +184,11 @@ public class Character implements CharacterInterface {
             else {                           // it is in shop
                 FastFoodShop fastFoodShop = Data.fastFoodShops.get(0);
                 System.out.println("You Are IN : " + fastFoodShop.getTitle());
-                System.out.println("Options : (0 to back)");
-                System.out.println("1 : Sign as Employee");
-                System.out.println("2 : Buy Food");
-                int answer = input.nextInt();
                 while (true) {
+                    System.out.println("Options : (0 to back)");
+                    System.out.println("1 : Sign as Employee");
+                    System.out.println("2 : Buy Food");
+                    int answer = input.nextInt();
                     if (answer == 1) {
                         System.out.println("You want to Work As an Employee in : " + fastFoodShop.getTitle());
                         System.out.println("Here Is The Income : " + fastFoodShop.getEmployeeIncome());
@@ -222,6 +222,10 @@ public class Character implements CharacterInterface {
                     } else if (answer == 2) {
                         Data.fastFoodShops.get(0).buyFood(this);
                         this.positionProcessing();
+                        break;
+
+                    } else if (answer==0) {
+                        Menu.userMenu(this.userInfo);
                         break;
 
                     } else {

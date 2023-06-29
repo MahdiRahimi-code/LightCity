@@ -233,13 +233,18 @@ public class Menu {
             ShowProperties();
             int select1 = in.nextInt();
             if (select1 == 1) {
-                System.out.println(character.properties);
-            } else if (select1 == 2) {
-
+                if (character.properties.size() == 0) {
+                    System.out.println("You dont have any property");
+                } else {
+                    System.out.println("Your Properties : ");
+                    for (Property p : character.properties) {
+                        System.out.printf("ID : %d  /  coordinates : {x:%f , y:%f}", p.getPropertyID(), p.getCoordinate()[0], p.getCoordinate()[1]);
+                    }
+                }
+            }else if (select1 == 2) {
+                goTo(user);
             } else if (select1 == 3) {
-
-            } else if (select1 == 4) {
-
+                userMenu(user);
             }
         } else if (select.equals("c")) {
             Job k = null;
@@ -283,17 +288,16 @@ public class Menu {
 
     private static void ShowProperties() {
         System.out.println("I : Show properties");
-        System.out.println("II : Management");
-        System.out.println("III : Found Industry");
-        System.out.println("IV : Exit");
+        System.out.println("II : Found Industry");
+        System.out.println("III : Exit");
     }
 
     private static void MenuDashboard() {
-        System.out.println("1 : My job");
-        System.out.println("2 : Properties");
-        System.out.println("3 : Economy");
-        System.out.println("4 : Life");
-        System.out.println("5 : Exit");
+        System.out.println("a : My job");
+        System.out.println("b : Properties");
+        System.out.println("c : Economy");
+        System.out.println("d : Life");
+        System.out.println("e : Exit");
     }
 
     private static void ShowEconomy() {
