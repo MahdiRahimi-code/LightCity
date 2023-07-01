@@ -266,7 +266,7 @@ public class Menu {
             Job k = null;
             for (Job i : Data.jobs) {
                 if (i.equals(character.getJob())) {
-                    i = k;
+                    k = i;
                     break;
                 }
             }
@@ -277,7 +277,7 @@ public class Menu {
                     System.out.println(k.getIncome());
                     Dashboard(user);
                 } else if (select2 == 2) {
-                    System.out.println("Employee of" + k.getTitle());
+                    System.out.println("Job : " + k.getTitle());
                     Dashboard(user);
                 }
             } else {

@@ -102,10 +102,16 @@ public class Character implements CharacterInterface {
 
                         while (true) {
                             if (select == 1) {
-                                bank.registerAsEmp(this);
-                                System.out.println("You Have Successfully Registered As Employee");
-                                Menu.userMenu(this.userInfo);
-                                break;
+                                if (bank.registerAsEmp(this)){
+                                    System.out.println("You Have Successfully Registered As Bank Employee");
+                                    Menu.userMenu(this.userInfo);
+                                    break;
+                                }
+                                else{
+                                    System.out.println("Sorry .Bank No More Needs Employee ");
+                                    Menu.userMenu(this.userInfo);
+                                    break;
+                                }
 
                             } else if (select == 2) {
                                 this.positionProcessing();
@@ -129,11 +135,12 @@ public class Character implements CharacterInterface {
                     else if (result == 3) {
                         if (Data.stockMarkets.get(0).getDetail(this.userInfo.getUsername()) == 0){
                             System.out.println("No Account Found");
-                            Menu.userMenu(this.userInfo);
+                            this.positionProcessing();
                             break;
                         }
                         else {
                             System.out.println("Your Amount : " + Data.stockMarkets.get(0).getDetail(this.userInfo.getUsername()));
+                            this.positionProcessing();
                             break;
                         }
 

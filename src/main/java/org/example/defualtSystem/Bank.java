@@ -29,12 +29,14 @@ public class Bank extends Industry implements BankInterface {
     }
 
     public boolean registerAsEmp(Character character) {
-        if (employees.size() >= MAX_EMPLOYEE_COUNT)
+        if (employees.size() >= MAX_EMPLOYEE_COUNT){
             return false;
+        }
         Employee employee = new Employee(character.getUserInfo().getUsername(), this, BASE_EMP_SALARY,
                 character.getAccount());
         Job job = new Job("BankEmployee", this.BASE_EMP_SALARY, this.IndustryID);
         Data.jobs.add(job);
+        character.setJob(job);
         employees.add(employee);
         Data.employees.add(employee);
         return true;
