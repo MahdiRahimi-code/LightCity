@@ -30,7 +30,7 @@ public class StockMarket {
         if (users.containsKey(userName)) {
             return users.get(userName);
         } else {
-            return 0.0;
+            return -1;
         }
     }
 
@@ -40,7 +40,7 @@ public class StockMarket {
             users.put(userName, 0.0);
             return amount;
         } else {
-            return 0.0;
+            return -1;
         }
     }
 

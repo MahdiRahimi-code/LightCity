@@ -104,12 +104,12 @@ public class Character implements CharacterInterface {
                             if (select == 1) {
                                 if (bank.registerAsEmp(this)){
                                     System.out.println("You Have Successfully Registered As Bank Employee");
-                                    Menu.userMenu(this.userInfo);
+                                    this.positionProcessing();
                                     break;
                                 }
                                 else{
                                     System.out.println("Sorry .Bank No More Needs Employee ");
-                                    Menu.userMenu(this.userInfo);
+                                    this.positionProcessing();
                                     break;
                                 }
 
@@ -118,7 +118,7 @@ public class Character implements CharacterInterface {
                                 break;
 
                             } else if (select == 3) {
-                                Menu.userMenu(this.getUserInfo());
+                                this.positionProcessing();
                                 break;
 
                             } else {
@@ -129,17 +129,17 @@ public class Character implements CharacterInterface {
                     }
                     else if (result == 2) {
                         System.out.println(this.getAccount().toString());
-                        Menu.userMenu(this.userInfo);
+                        this.positionProcessing();
                         break;
                     }
                     else if (result == 3) {
-                        if (Data.stockMarkets.get(0).getDetail(this.userInfo.getUsername()) == 0){
+                        if (Data.stockMarkets.get(0).getDetail(this.userInfo.getUsername()) == -1){
                             System.out.println("No Account Found");
                             this.positionProcessing();
                             break;
                         }
                         else {
-                            System.out.println("Your Amount : " + Data.stockMarkets.get(0).getDetail(this.userInfo.getUsername()));
+                            System.out.printf("Your Money Amount : %.2f$\n" , Data.stockMarkets.get(0).getDetail(this.userInfo.getUsername()));
                             this.positionProcessing();
                             break;
                         }
@@ -147,35 +147,37 @@ public class Character implements CharacterInterface {
                     }
                     else if (result == 4) {
                         Scanner floatInput = new Scanner(System.in);
+                        System.out.println("The Followed Money Will Be Transferred To Your stock Market");
                         System.out.println("Amount : ");
                         float money = floatInput.nextFloat();
 
                         if (this.account.withdraw(this, money)){
                             Data.stockMarkets.get(0).depositCapital(this.userInfo.getUsername(), money);
                             System.out.println("Money Withdraw For Stock Market Successful");
-                            Menu.userMenu(this.userInfo);
+                            this.positionProcessing();
                             break;
                         }
                         else{
                             System.out.println("Not Enough Money");
-                            Menu.userMenu(this.userInfo);
+                            this.positionProcessing();
                             break;
                         }
                     }
                     else if (result == 5) {
                         Scanner floatInput = new Scanner(System.in);
+                        System.out.println("The Followed Money Will Be Transferred To Your Bank Account");
                         System.out.println("Amount : ");
                         float money = floatInput.nextFloat();
 
-                        if (Data.stockMarkets.get(0).withdrawCapital(this.userInfo.getUsername()) == 0.0){
+                        if (Data.stockMarkets.get(0).withdrawCapital(this.userInfo.getUsername()) == -1){
                             System.out.println("User Not Found");
-                            Menu.userMenu(this.userInfo);
+                            this.positionProcessing();
                             break;
                         }
                         else{
                             this.account.deposit(this, money);
                             System.out.println("Money Deposit to Bank Account Successful");
-                            Menu.userMenu(this.userInfo);
+                            this.positionProcessing();
                             break;
                         }
 

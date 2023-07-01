@@ -85,11 +85,11 @@ public class BankAccount {
     @Override
     public String toString() {
         return "BankAccount : \n" +
-                "owner : " + owner + '\\' +
-                "password : " + password + '\\' +
-                ", money : " + money + '\\' +
-                ", lastChange : " + lastChange + '\\' +
-                ", bankAccountID : " + bankAccountID + '\\' +
-                ", logs : " + logs ;
+                "owner : " + owner + " \\" +
+                " password : " + password + " \\" +
+                " money : " + money + "$" +  " \\" +
+                " lastChange : " + lastChange + " \\" +
+                " bankAccountID : " + bankAccountID + " \\" +
+                " logs : " + logs ;
     }
 }
