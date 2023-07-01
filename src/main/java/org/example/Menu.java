@@ -85,7 +85,6 @@ public class Menu {
     }
 
     private static void goTo(User user) {
-        Scanner in = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
 
@@ -129,6 +128,10 @@ public class Menu {
                 }
                 System.out.println("Coordinate Y : ");
                 float coordinateY = input.nextFloat();
+                if (coordinateX == -1) {
+                    goTo(user);
+                    break;
+                }
 
                 if (searchByLocation(coordinateX, coordinateY) == null) {
                     System.out.println("No Property Found");
@@ -142,6 +145,8 @@ public class Menu {
 
         else if (awnser == 3) {
             while (true) {
+                System.out.println("\t\tIndustries : Bank / foodShop");
+                System.out.println("\tplease care How They Are Written");
                 System.out.println("Enter Industry Title : (b to back)");
                 String title = input2.next();
 
@@ -198,7 +203,7 @@ public class Menu {
     public static Property searchByLocation(float x, float y) {
         Property k = null;
         for (Property w : Data.properties) {
-            if (x <= w.getCoordinate()[0] && w.getCoordinate()[0] + w.getScales()[0] >= x && y <= w.getCoordinate()[1]
+            if (x >= w.getCoordinate()[0] && w.getCoordinate()[0] + w.getScales()[0] >= x && y >= w.getCoordinate()[1]
                     && w.getScales()[1] + w.getCoordinate()[1] >= y) {
                 k = w;
                 break;
@@ -206,8 +211,8 @@ public class Menu {
         }
         if (k == null) {
             for (Industry i : Data.industries) {
-                if (x <= i.getCoordinate()[0] && i.getCoordinate()[0] + i.getScales()[0] >= x
-                        && y <= i.getCoordinate()[1] && i.getScales()[1] + i.getCoordinate()[1] >= y) {
+                if (x >= i.getCoordinate()[0] && i.getCoordinate()[0] + i.getScales()[0] >= x && y >= i.getCoordinate()[1]
+                        && i.getScales()[1] + i.getCoordinate()[1] >= y) {
                     k = i;
                     break;
                 }
@@ -233,7 +238,8 @@ public class Menu {
                 Dashboard(user);
             }
             else {
-                System.out.println(character.getJob());
+                System.out.println("\t\tJob : " + character.getJob().getTitle());
+                System.out.println("\tIncome : " + character.getJob().getIncome());
                 Dashboard(user);
             }
         } else if (select.equals("b")) {
@@ -256,6 +262,7 @@ public class Menu {
                 userMenu(user);
             }
         } else if (select.equals("c")) {
+            System.out.println("Your money amount : " + character.getAccount().getMoney() + "$");
             Job k = null;
             for (Job i : Data.jobs) {
                 if (i.equals(character.getJob())) {
@@ -347,20 +354,22 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         int select = scanner.nextInt();
         if (select == 1) {
-            System.out.println(k.getSleep() + "%" + k.getWater() + "%" + k.getFood() + "%");
-        } else if (select == 2) {
+            System.out.println("sleep : " + k.getSleep() + "%" + "\tWater : " + k.getWater() + "%" + "\tFood : " + k.getFood() + "%");
+            userMenu(user);
 
-        } else if (select == 3) {
+        } else if (select == 2) {
             if (character.foods.size() > 0) {
                 k.foodConsumption(character.foods.get(0));
                 character.foods.remove(0);
+                System.out.println("You Ate food");
+                userMenu(user);
             } else {
                 System.out.println("You don't have enough foods");
                 System.out.println("Would you like to go buy some food?");
                 System.out.println("1.YES \n 2.NO");
                 int ar = scanner.nextInt();
                 if (ar == 1) {
-                    character.gotToLocation(Menu.searchByTitle("Shop"));
+                    character.gotToLocation(Menu.searchByTitle("foodShop"));
                     character.positionProcessing();
                 } else if (ar == 2) {
                     System.out.println("Are you sure?");
@@ -369,8 +378,7 @@ public class Menu {
                     if (ar1 == 1) {
                         userMenu(user);
                     } else {
-                        character.gotToLocation(Menu.searchByTitle("Shop"));
-                        character.positionProcessing();
+                        Life(user);
                     }
                 }
             }
@@ -381,8 +389,7 @@ public class Menu {
 
     private static void ShowLife() {
         System.out.println("I : Life Detail");
-        System.out.println("II : Sleep Function");
-        System.out.println("III : Eat Function");
+        System.out.println("II : Eat Function");
     }
 
     private static void Exit(User user) {

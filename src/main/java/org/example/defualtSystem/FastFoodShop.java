@@ -33,7 +33,7 @@ public class FastFoodShop extends Industry {
     public void buyFood(Character character) {
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < 5; i++) {
-            System.out.printf("%d : %s  -  Price : 0.01$", i + 1, foods.get(i).getTitle());
+            System.out.printf("%d : %s  -  Price : 0.01$\t", i + 1, foods.get(i).getTitle());
         }
         while (true) {
             System.out.println("Your choice : (0 to back)\n");
