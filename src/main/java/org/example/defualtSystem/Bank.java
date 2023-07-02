@@ -16,8 +16,8 @@ public class Bank extends Industry implements BankInterface {
     private Manager manager = null;
     public static BankTurnover turnover;
 
-    public Bank(Property property, Character root) {
-        super("Bank", property, root, 100.0f, new ArrayList<Employee>());
+    public Bank(Property property, Character root, ArrayList<Employee> employeesList) {
+        super("Bank", property, root, 100.0f, employeesList);
         turnover = new BankTurnover(0, 0);
         Data.bankTurnovers.add(turnover);
     }

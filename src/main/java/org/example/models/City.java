@@ -1,14 +1,12 @@
 package org.example.models;
 
 import org.example.Data;
-import org.example.Database;
 import org.example.Menu;
 import org.example.defualtSystem.*;
 import org.example.interfaces.CityInterface;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class City implements CityInterface {
     private final ArrayList<Character> characters;
@@ -22,9 +20,10 @@ public class City implements CityInterface {
         characters = new ArrayList<>();
         municipality = new Municipality();
         // Get Bank Property from municipality
-        bankSystem = new Bank(new Property(new float[] { 12, 32 }, new float[] { 42, 32 }, root), root);
+        bankSystem = new Bank(new Property(new float[] { 12, 32 }, new float[] { 42, 32 }, root),
+                root, new ArrayList<Employee>());
         FastFoodShop fastFoodShop = new FastFoodShop("foodShop",
-                new Property(new float[] { 12, 32 }, new float[] { 42, 0 }, root), root, null);
+                new Property(new float[] { 12, 32 }, new float[] { 42, 0 }, root), root, new ArrayList<Food>());
         stockMarket = new StockMarket();
         Data.industries.add(bankSystem);
         Data.industries.add(fastFoodShop);
@@ -67,7 +66,7 @@ public class City implements CityInterface {
      * CHANGE THIS FUNCTION STRUCTURE</b> ,
      *
      */
-    private void beginGame(Character character) {
+    public void beginGame(Character character) {
         Thread thread = new Thread(() -> {
             try {
                 Menu.userMenu(character.getUserInfo());

@@ -29,7 +29,6 @@ public class Industry extends Property {
         startPaySalary();
         ID++;
         IndustryID = ID;
-        Data.industries.add(this);
     }
 
     public String getTitle() {

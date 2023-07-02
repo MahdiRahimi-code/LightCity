@@ -21,7 +21,6 @@ public class Data {
     public static ArrayList<Food> foods = new ArrayList<>();
     public static ArrayList<Industry> industries = new ArrayList<>();
     public static ArrayList<Job> jobs = new ArrayList<>();
-    public static ArrayList<Liquid> liquids= new ArrayList<>();
     public static ArrayList<Property> properties = new ArrayList<>();
     public static ArrayList<User> users = new ArrayList<>();
 

@@ -32,6 +32,15 @@ public class Game implements GameInterface {
                 city.joinCharacter(user);
                 Data.cities.add(city);
             }
+            else{
+                System.out.println("Found City...Starting Game");
+                for (Character c : Data.characters){
+                    if (c.getUserInfo().equals(user)){
+                        city.beginGame(c);
+                        break;
+                    }
+                }
+            }
         } else {
             System.out.println("User not found");
             Menu.showMenu();

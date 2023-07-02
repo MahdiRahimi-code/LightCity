@@ -17,6 +17,7 @@ public class Menu {
         mainMenu();
         String next = scanner.next();
         if (next.equals("1")) {
+            Database.ReadData();
             game.continueGame(loginMenu());
         } else if (next.equals("2")) {
             game.startGame(loginMenu());
