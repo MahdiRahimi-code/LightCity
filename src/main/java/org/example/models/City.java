@@ -24,7 +24,7 @@ public class City implements CityInterface {
         // Get Bank Property from municipality
         bankSystem = new Bank(new Property(new float[] { 12, 32 }, new float[] { 42, 32 }, root), root);
         FastFoodShop fastFoodShop = new FastFoodShop("foodShop",
-                new Property(new float[] { 12, 32 }, new float[] { 42, 0 }, root), root);
+                new Property(new float[] { 12, 32 }, new float[] { 42, 0 }, root), root, null);
         stockMarket = new StockMarket();
         Data.industries.add(bankSystem);
         Data.industries.add(fastFoodShop);
@@ -35,11 +35,20 @@ public class City implements CityInterface {
         stockMarket.startMarketSimulation();
     }
 
+    public City(ArrayList<Character> characters, Bank bank, Municipality municipality, StockMarket stockMarket, Character root){
+        this.stockMarket=stockMarket;
+        this.bankSystem=bank;
+        this.root=root;
+        this.municipality=municipality;
+        this.characters=characters;
+    }
+
     @Override
     public void joinCharacter(User userinfo) {
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
         ArrayList<Property> properties = new ArrayList<>();
-        Character character = new Character(userinfo, newAccount, new Life(), null, properties, null);
+        ArrayList<Food> foods= new ArrayList<>();
+        Character character = new Character(userinfo, newAccount, new Life(), null, properties, null, foods);
         character.gotToLocation(Menu.searchByID(1));
         character.getAccount().deposit(character, 10);
         Data.characters.add(character);

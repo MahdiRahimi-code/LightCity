@@ -39,18 +39,17 @@ public class Life {
         return sleep;
     }
 
-    public void foodConsumption(Food product) {
-
+    public void foodConsumption(Food product) {       //water && food together
         water += product.getWater();
         food += product.getFood();
 
     }
 
-    public void liquidConsumption(Liquid product) {
-        if (product.available) {
-            water += product.getLiquid();
-        }
-    }
+//    public void liquidConsumption(Liquid product) {
+//        if (product.available) {
+//            water += product.getLiquid();
+//        }
+//    }
 
     public void startConsuming() {
         Thread thread = new Thread(() -> {

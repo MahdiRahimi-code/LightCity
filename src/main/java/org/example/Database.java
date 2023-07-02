@@ -1,12 +1,13 @@
 package org.example;
 
 import org.example.defualtSystem.BankTurnover;
-import org.example.models.BankAccount;
-import org.example.models.Job;
-import org.example.models.User;
+import org.example.defualtSystem.Life;
+import org.example.models.*;
+import org.example.models.Character;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 
 public class Database {
@@ -28,47 +29,93 @@ public class Database {
 
             ResultSet user = stmt.executeQuery("SELECT * FROM user");
             while (user.next()){
-                String userString = user.getString("Password");
-                String[] parts = userString.split("@");
-                Data.users.add(new User(user.getString("Username"), parts[0]));
+                Data.users.add(new User(user.getString("Username"), user.getString("Password")));
             }
 
-//            ResultSet job = stmt.executeQuery("SELECT * FROM job");
-//            while(job.next()){
-//                int i = job.getInt("IndustryID");
-//                String id = Integer.toString(i);
-//                Data.jobs.add(new Job(job.getString("Title"), job.getFloat("Income"), id));
-//            }
-//
-//            ResultSet bankAccount = stmt.executeQuery(("SELECT * FROM bankaccount"));
-//            while(bankAccount.next()){
-//                String dateString = bankAccount.getString("LastChangeDate");
-//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//                Date date = (Date) dateFormat.parse(dateString);
-//                Data.bankAccounts.add(new BankAccount(bankAccount.getString("Owner"), bankAccount.getString("Password"), bankAccount.getFloat("Money"), date));
-//            }
-//
-//            ResultSet bankTurnOver = stmt.executeQuery("SELECT * FROM bankturnover");
-//            while(bankTurnOver.next()){
-//                Data.bankTurnovers.add(new BankTurnover(bankTurnOver.getFloat("Withdraw"), bankTurnOver.getFloat("Deposit")));
-//            }
+            ResultSet bankTurnover = stmt.executeQuery("SELECT * FROM bankturnover");
+            while (bankTurnover.next()){
+                Data.bankTurnovers.add(new BankTurnover(bankTurnover.getFloat("Withdraw"), bankTurnover.getFloat("Deposit")));
+            }
 
-//            ResultSet character = stmt.executeQuery("SELECT * FROM character");
-//            while (character.next()){
-//                BankAccount bankAccount1 = null;
-//                int bai = character.getInt("BankAccountID");
-//                for (BankAccount ba : Data.bankAccounts){
-//                    if (ba.getBankAccountID()==bai)
-//                        bankAccount1=ba;
-//                        break;
-//                }
-//                Data.characters.add(new Character(character.getString("UserInfo"), bankAccount1, ))
-//            }
+            ResultSet life = stmt.executeQuery("SELECT * FROM life");
+            while (life.next()){
+                Data.lives.add(new Life(life.getFloat("Food"), life.getFloat("Water"), life.getFloat("Sleep")));
+            }
+
+            ResultSet bankAccount = stmt.executeQuery("SELECT * FROM bankaccount");
+            while (bankAccount.next()){
+                String date = bankAccount.getString("LastChangeDate");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date lastChange = (Date) dateFormat.parse(date);
+                Data.bankAccounts.add(new BankAccount(bankAccount.getString("Owner"), bankAccount.getString("Password"), bankAccount.getFloat("Money"), lastChange));
+            }
+
+            ResultSet food = stmt.executeQuery("SELECT * FROM food");
+            while (food.next()){
+                Data.foods.add(new Food(food.getString("Title"), food.getFloat("Water"), food.getFloat("Food")));
+            }
+
+            ResultSet character = stmt.executeQuery("SELECT * FROM character");
+            while (character.next()){
+                int userid = character.getInt("UserID");
+                User user1 = searchUserByID(userid);
+
+                int bankAccountID = character.getInt("bankaccount");
+                BankAccount bankAccount1 = searchBankAccountByID(bankAccountID);
+
+                int lifeID = character.getInt("life");
+                Life life1 = searchLifeByID(lifeID);
+
+                int jobID = character.getInt("job");
+                Job job = searchJobByID(jobID);
+
+                String[] properties = character.getString("property").split("@");
+                int propertiesID;
+                ArrayList<Property> chProperties = new ArrayList<>();
+                for (int i=0;i< properties.length;i++){
+                    propertiesID = Integer.parseInt(properties[i]);
+                    Property p = searchPropertyByID(propertiesID);
+                    chProperties.add(p);
+                }
+
+                int inPositionID = character.getInt("InPositionPropertyID");
+                Property inProperty = searchPropertyByID(inPositionID);
+
+                String[] foods = character.getString("foodsID").split("@");
+                int foodsID;
+                ArrayList<Food> chFoods = new ArrayList<>();
+                for (int i=0;i< foods.length;i++){
+                    foodsID = Integer.parseInt(foods[i]);
+                    Food f = searchFoodByID(foodsID);
+                    chFoods.add(f);
+                }
+
+                Data.characters.add(new Character(user1, bankAccount1, life1, job, chProperties, inProperty, chFoods));
+            }
+
+            ResultSet job = stmt.executeQuery("SELECT * FROM job");
+            while (job.next()){
+                String title = job.getString("Title");
+                Float income = job.getFloat("Income");
+                int industryID = job.getInt("IndustryID");
+
+                Data.jobs.add(new Job(title, income, industryID));
+            }
+
+            ResultSet property = stmt.executeQuery("SELECT * FROM property");
+            while (property.next()){
+                int ownerID = property.getInt("OwnerID");
+                Character owner = searchCharacterByID(ownerID);
+                float[] coordinates = {property.getFloat("CoordinateX"), property.getFloat("CoordinateY")};
+                float[] scales = {property.getFloat("Length"), property.getFloat("Width")};
+
+                Data.properties.add(new Property(scales, coordinates, owner));
+            }
 
 
             conn.close();
         } catch (Exception exp) {
-            System.out.println("Database Exception : \n" + exp.toString());
+            System.out.println("Database Exception : \n" + exp.getMessage());
             System.exit(0);
         }
     }
@@ -103,4 +150,66 @@ public class Database {
         }
     }
 
+    private static User searchUserByID(int userid){
+        for (User user : Data.users){
+            if (user.getUserID() == userid){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    private static BankAccount searchBankAccountByID(int bankAccountid){
+        for (BankAccount b : Data.bankAccounts){
+            if (b.getBankAccountID() == bankAccountid){
+                return b;
+            }
+        }
+        return null;
+    }
+
+    private static Life searchLifeByID(int lifeid){
+        for (Life l : Data.lives){
+            if (l.getLifeID() == lifeid){
+                return l;
+            }
+        }
+        return null;
+    }
+
+    private static Job searchJobByID(int jobid){
+        for (Job j : Data.jobs){
+            if (j.getJobID() == jobid){
+                return j;
+            }
+        }
+        return null;
+    }
+
+    private static Property searchPropertyByID(int propertyid){
+        for (Property p : Data.properties){
+            if (p.getPropertyID() == propertyid){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    private static Food searchFoodByID(int foodid){
+        for (Food f : Data.foods){
+            if (f.getFoodID() == foodid){
+                return f;
+            }
+        }
+        return null;
+    }
+
+    private static Character searchCharacterByID(int characterid){
+        for (Character c : Data.characters){
+            if (c.getCharacterID() == characterid){
+                return c;
+            }
+        }
+        return null;
+    }
 }

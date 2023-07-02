@@ -2,10 +2,8 @@ package org.example.defualtSystem;
 
 import org.example.Database;
 import org.example.Menu;
+import org.example.models.*;
 import org.example.models.Character;
-import org.example.models.Food;
-import org.example.models.Industry;
-import org.example.models.Property;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,15 +16,15 @@ public class FastFoodShop extends Industry {
      */
     private static final float INCOME = 0.3f;
     private static final float EMPLOYEE_INCOME = 0.02f;
-    private ArrayList<Food> foods;
+    private ArrayList<Food> foods = new ArrayList<>();
 
     public float getEmployeeIncome() {
         return EMPLOYEE_INCOME;
     }
 
-    public FastFoodShop(String title, Property property, Character character) {
-        super(title, property, character, EMPLOYEE_INCOME);
-        foods = new ArrayList<>();
+    public FastFoodShop(String title, Property property, Character character, ArrayList<Food> foods) {
+        super(title, property, character, EMPLOYEE_INCOME, new ArrayList<Employee>());
+        this.foods=foods;
         generateFood();
     }
 
