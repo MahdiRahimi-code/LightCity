@@ -57,4 +57,6 @@ public class Bank extends Industry implements BankInterface {
     public float getBaseEmpSalary(){
         return BASE_EMP_SALARY;
     }
+
+
 }

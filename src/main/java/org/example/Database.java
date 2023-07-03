@@ -156,8 +156,7 @@ public class Database {
 
             Municipality municipality = new Municipality(Data.properties);
 
-            Character root = null;
-            City city = new City(Data.characters, Data.banks.get(0), municipality, Data.stockMarkets.get(0), root);
+            City city = new City(Data.characters, Data.banks.get(0), municipality);
 
             Data.municipalities.add(municipality);
             Data.cities.add(city);
