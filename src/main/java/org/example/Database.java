@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.defualtSystem.Bank;
-import org.example.defualtSystem.BankTurnover;
-import org.example.defualtSystem.Life;
-import org.example.defualtSystem.Municipality;
+import org.example.defualtSystem.*;
 import org.example.models.*;
 import org.example.models.Character;
 
@@ -62,6 +59,16 @@ public class Database {
                 Data.foods.add(new Food(food.getString("Title"), food.getFloat("Water"), food.getFloat("Food")));
             }
 
+            ResultSet job = stmt.executeQuery("SELECT * FROM job");
+            while (job.next()){
+                String title = job.getString("Title");
+                Float income = job.getFloat("Income");
+//                int industryID = job.getInt("IndustryID");
+
+//                Data.jobs.add(new Job(title, income, industryID));
+                Data.jobs.add(new Job(title, income, -1));
+            }
+
 
             ResultSet character = stmt.executeQuery("SELECT * FROM `character`");
             while (character.next()){
@@ -74,20 +81,20 @@ public class Database {
                 int lifeID = character.getInt("LifeID");
                 Life life1 = searchLifeByID(lifeID);
 
-                int jobID = character.getInt("JobID");
-                Job job = searchJobByID(jobID);
-
-                String[] properties = character.getString("PropertiesID").split("@");
-                int propertiesID;
-                ArrayList<Property> chProperties = new ArrayList<>();
-                for (int i=0;i< properties.length;i++){
-                    propertiesID = Integer.parseInt(properties[i]);
-                    Property p = searchPropertyByID(propertiesID);
-                    chProperties.add(p);
-                }
-
-                int inPositionID = character.getInt("InPositionPropertyID");
-                Property inProperty = searchPropertyByID(inPositionID);
+//                int jobID = character.getInt("JobID");
+//                Job job = searchJobByID(jobID);
+//
+//                String[] properties = character.getString("PropertiesID").split("@");
+//                int propertiesID;
+//                ArrayList<Property> chProperties = new ArrayList<>();
+//                for (int i=0;i< properties.length;i++){
+//                    propertiesID = Integer.parseInt(properties[i]);
+//                    Property p = searchPropertyByID(propertiesID);
+//                    chProperties.add(p);
+//                }
+//
+//                int inPositionID = character.getInt("InPositionPropertyID");
+//                Property inProperty = searchPropertyByID(inPositionID);
 
                 String[] foods = character.getString("foodsID").split("@");
                 int foodsID;
@@ -98,28 +105,46 @@ public class Database {
                     chFoods.add(f);
                 }
 
-                Data.characters.add(new Character(user1, bankAccount1, life1, job, chProperties, inProperty, chFoods));
+//                Data.characters.add(new Character(user1, bankAccount1, life1, job, chProperties, inProperty, chFoods));
+                  Data.characters.add(new Character(user1, bankAccount1, life1, null, null, null, chFoods));
             }
 
 
             ResultSet property = stmt.executeQuery("SELECT * FROM property");
             while (property.next()){
                 int ownerID = property.getInt("OwnerID");
-                Character owner = searchCharacterByID(ownerID);
+                Character owner = null;
+                if (ownerID!=0){
+                    owner = searchCharacterByID(ownerID);
+                }
                 float[] coordinates = {property.getFloat("CoordinateX"), property.getFloat("CoordinateY")};
                 float[] scales = {property.getFloat("Length"), property.getFloat("Width")};
 
-                Data.properties.add(new Property(scales, coordinates, owner));
+                Property p = new Property(scales, coordinates, owner);
+                Data.properties.add(p);
+                owner.properties.add(p);
+                owner.gotToLocation(p);
             }
 
 
-            ResultSet job = stmt.executeQuery("SELECT * FROM job");
-            while (job.next()){
-                String title = job.getString("Title");
-                Float income = job.getFloat("Income");
-                int industryID = job.getInt("IndustryID");
+            ResultSet fastfoodshop = stmt.executeQuery("SELECT * FROM fastfoodshop");
+            while (fastfoodshop.next()){
+                String title = fastfoodshop.getString("Title");
 
-                Data.jobs.add(new Job(title, income, industryID));
+                int propertyID = fastfoodshop.getInt("PropertyID");
+                Property property1 = searchPropertyByID(propertyID);
+
+                String[] foods = fastfoodshop.getString("FoodsID").split("@");
+                int foodsID;
+                ArrayList<Food> shopFoods = new ArrayList<>();
+                for (int i=0;i< foods.length;i++){
+                    foodsID = Integer.parseInt(foods[i]);
+                    Food f = searchFoodByID(foodsID);
+                    shopFoods.add(f);
+                }
+
+                Data.fastFoodShops.add(new FastFoodShop(title, property1, null, shopFoods));
+                Data.industries.add(new FastFoodShop(title, property1, null, shopFoods));
             }
 
 
@@ -130,16 +155,19 @@ public class Database {
 
                 Character root = null;
 
-                String[] employees = bank.getString("EmployeesListID").split("@");
-                int employeesID;
-                ArrayList<Employee> bankEmployees = new ArrayList<>();
-                for (int i=0;i< employees.length;i++){
-                    employeesID = Integer.parseInt(employees[i]);
-                    Employee e = searchEmployeeByID(employeesID);
-                    bankEmployees.add(e);
-                }
+//                String[] employees = bank.getString("EmployeesListID").split("@");
+//                int employeesID;
+//                ArrayList<Employee> bankEmployees = new ArrayList<>();
+//                for (int i=0;i< employees.length;i++){
+//                    employeesID = Integer.parseInt(employees[i]);
+//                    Employee e = searchEmployeeByID(employeesID);
+//                    bankEmployees.add(e);
+//                }
 
-                Data.banks.add(new Bank(property1, root, bankEmployees));
+//                Data.banks.add(new Bank(property1, root, bankEmployees));
+                  Bank bank1 = new Bank(property1, root, null);
+                  Data.banks.add(bank1);
+                  Data.industries.add(bank1);
             }
 
 
@@ -147,10 +175,11 @@ public class Database {
             while (employee.next()){
                 String username = employee.getString("Username");
                 Float baseSalary = employee.getFloat("BaseSalary");
-                Industry industry =searchIndustryByID(employee.getInt("IndustryID"));
+//                Industry industry =searchIndustryByID(employee.getInt("IndustryID"));
                 BankAccount bankAccount1 = searchBankAccountByID(employee.getInt("BankAccountID"));
 
-                Data.employees.add(new Employee(username, industry, baseSalary, bankAccount1));
+//                Data.employees.add(new Employee(username, industry, baseSalary, bankAccount1));
+                Data.employees.add(new Employee(username, null, baseSalary, bankAccount1));
             }
 
 

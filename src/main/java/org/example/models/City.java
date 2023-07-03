@@ -24,7 +24,7 @@ public class City implements CityInterface {
         bankSystem = new Bank(new Property(new float[] { 12, 32 }, new float[] { 42, 32 }, root),
                 root, new ArrayList<Employee>());              //property id : 25
         FastFoodShop fastFoodShop = new FastFoodShop("foodShop",              //property id : 26
-                new Property(new float[] { 12, 32 }, new float[] { 42, 0 }, root), root, new ArrayList<Food>());
+                new Property(new float[] { 12, 32 }, new float[] { 42, 0 }, root), root);
         stockMarket = new StockMarket();
         Data.industries.add(bankSystem);
         Data.industries.add(fastFoodShop);

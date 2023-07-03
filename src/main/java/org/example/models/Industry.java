@@ -11,6 +11,7 @@ public class Industry extends Property {
     private static int ID = 0;
     protected int IndustryID;
     protected ArrayList<Employee> employees = new ArrayList<>();
+    protected ArrayList<Job> jobs = new ArrayList<>();
 
     /**
      * @param title     : A Title for generate Industry @example : Bank extends
@@ -21,11 +22,12 @@ public class Industry extends Property {
      * @param income    : Each Business has a class like Bank and extends Industry ,
      *                  in super method Enter the desired monthly income amount
      */
-    public Industry(String title, Property property, Character character, float income, ArrayList<Employee> employees) {
+    public Industry(String title, Property property, Character character, float income, ArrayList<Employee> employees, ArrayList<Job> jobs) {
         super(property.getScales(), property.getCoordinate(), character);
         this.title = title;
         this.employees = employees;
         this.income = income;
+        this.jobs=jobs;
         startPaySalary();
         ID++;
         IndustryID = ID;

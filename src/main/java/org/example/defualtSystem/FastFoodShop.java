@@ -23,8 +23,12 @@ public class FastFoodShop extends Industry {
     }
 
     public FastFoodShop(String title, Property property, Character character, ArrayList<Food> foods) {
-        super(title, property, character, EMPLOYEE_INCOME, new ArrayList<Employee>());
+        super(title, property, character, INCOME, new ArrayList<Employee>(), new ArrayList<Job>());
         this.foods=foods;
+    }
+
+    public FastFoodShop(String title, Property property, Character character) {
+        super(title, property, character, INCOME, new ArrayList<Employee>(), new ArrayList<Job>());
         generateFood();
     }
 
