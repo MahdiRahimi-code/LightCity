@@ -48,7 +48,7 @@ public class StockMarket {
         Thread marketThread = new Thread(() -> {
             Random random = new Random();
             while (true) {
-                double change = random.nextDouble() * 0.06 - 0.03;
+                double change = (random.nextDouble() * 0.06) - 0.03;
                 for (String userName : users.keySet()) {
                     double capital = users.get(userName);
                     double newCapital = capital + capital * change;
