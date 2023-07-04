@@ -106,7 +106,7 @@ public class Database {
                 }
 
 //                Data.characters.add(new Character(user1, bankAccount1, life1, job, chProperties, inProperty, chFoods));
-                  Data.characters.add(new Character(user1, bankAccount1, life1, null, null, null, chFoods));
+                  Data.characters.add(new Character(user1, bankAccount1, life1, null, null, null));
             }
 
 

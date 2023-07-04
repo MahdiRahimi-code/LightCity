@@ -17,7 +17,7 @@ public class City implements CityInterface {
 
     public City() {
         User rootUser = new User("root", "root");
-        root = new Character(rootUser, null, null, null, null, null, null);
+        root = new Character(rootUser, null, null, null, null, null);
         characters = new ArrayList<>();
         municipality = new Municipality();
         // Get Bank Property from municipality
@@ -38,7 +38,7 @@ public class City implements CityInterface {
 
     public City(ArrayList<Character> characters, Bank bank, Municipality municipality){
         User rootUser = new User("root", "root");
-        root = new Character(rootUser, null, null, null, null, null, null);
+        root = new Character(rootUser, null, null, null, null, null);
         Data.characters.add(root);
         stockMarket = new StockMarket();
         Data.stockMarkets.add(stockMarket);
@@ -53,7 +53,7 @@ public class City implements CityInterface {
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
         ArrayList<Property> properties = new ArrayList<>();
         ArrayList<Food> foods= new ArrayList<>();
-        Character character = new Character(userinfo, newAccount, new Life(), null, properties, null, foods);
+        Character character = new Character(userinfo, newAccount, new Life(), null, properties, null);
         character.gotToLocation(Menu.searchByID(1));
         character.getAccount().deposit(character, 10);
         Data.characters.add(character);
