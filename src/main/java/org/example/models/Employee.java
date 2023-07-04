@@ -6,6 +6,8 @@ public class Employee {
     private int level;
     private BankAccount bankAccount;
     private Industry industry;
+    private static int ID = 0;
+    private int employeeID;
 
     public Employee(String username, Industry industry, float baseSalary, BankAccount bankAccount) {
         this.username = username;
@@ -13,6 +15,8 @@ public class Employee {
         this.industry = industry;
         this.level = 1;
         this.bankAccount = bankAccount;
+        ID++;
+        employeeID=ID;
     }
 
     public String getUsername() {
@@ -41,5 +45,9 @@ public class Employee {
 
     public void paySalary() {
         bankAccount.deposit(industry.getOwner(), level * baseSalary);
+    }
+
+    public int getEmployeeID() {
+        return employeeID;
     }
 }

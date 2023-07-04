@@ -16,6 +16,10 @@ public class Municipality implements MunicipalityInterface {
         generateProperties();
     }
 
+    public Municipality(ArrayList<Property> properties){
+        this.properties=properties;
+    }
+
     private void generateProperties() {
         properties = new ArrayList<>();
         for (int i = 0; i < 7; i++) {

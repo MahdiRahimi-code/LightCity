@@ -5,11 +5,15 @@ public class Food {
     private final float water;
     private final float food;
     public boolean available = true;
+    private static int ID = 0;
+    private int foodID;
 
     public Food(String title, float food, float water) {
         this.food = food;
         this.water = water;
         this.title = title;
+        ID++;
+        foodID=ID;
     }
 
     public String getTitle() {
@@ -26,5 +30,9 @@ public class Food {
 
     public float getFood() {
         return food;
+    }
+
+    public int getFoodID() {
+        return foodID;
     }
 }

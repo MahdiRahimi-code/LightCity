@@ -17,6 +17,7 @@ public class Menu {
         mainMenu();
         String next = scanner.next();
         if (next.equals("1")) {
+            Database.ReadData();
             game.continueGame(loginMenu());
         } else if (next.equals("2")) {
             game.startGame(loginMenu());
@@ -252,7 +253,7 @@ public class Menu {
                 } else {
                     System.out.println("Your Properties : ");
                     for (Property p : character.properties) {
-                        System.out.printf("ID : %d  /  coordinates : {x:%f , y:%f}", p.getPropertyID(), p.getCoordinate()[0], p.getCoordinate()[1]);
+                        System.out.printf("ID : %d  /  coordinates : {x:%.2f , y:%.2f}\n", p.getPropertyID(), p.getCoordinate()[0], p.getCoordinate()[1]);
                     }
                     Dashboard(user);
                 }

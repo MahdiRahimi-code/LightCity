@@ -16,9 +16,10 @@ public class Bank extends Industry implements BankInterface {
     private Manager manager = null;
     public static BankTurnover turnover;
 
-    public Bank(Property property, Character root) {
-        super("Bank", property, root, 100.0f);
+    public Bank(Property property, Character root, ArrayList<Employee> employeesList) {
+        super("Bank", property, root, 100.0f, employeesList, new ArrayList<Job>());
         turnover = new BankTurnover(0, 0);
+        Data.bankTurnovers.add(turnover);
     }
 
     public BankAccount newAccount(String username, String password) {
@@ -56,4 +57,6 @@ public class Bank extends Industry implements BankInterface {
     public float getBaseEmpSalary(){
         return BASE_EMP_SALARY;
     }
+
+
 }
