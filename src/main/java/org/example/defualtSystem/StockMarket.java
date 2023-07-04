@@ -34,10 +34,9 @@ public class StockMarket {
         }
     }
 
-    public synchronized double withdrawCapital(String userName) {
+    public synchronized double withdrawCapital(String userName, double amount) {
         if (users.containsKey(userName)) {
-            double amount = users.get(userName);
-            users.put(userName, 0.0);
+            users.put(userName, users.get(userName)-amount);
             return amount;
         } else {
             return -1;

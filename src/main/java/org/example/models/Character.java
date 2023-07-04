@@ -1,6 +1,7 @@
 package org.example.models;
 
 import org.example.Data;
+import org.example.Database;
 import org.example.Menu;
 import org.example.defualtSystem.Bank;
 import org.example.defualtSystem.FastFoodShop;
@@ -22,7 +23,7 @@ public class Character implements CharacterInterface {
     private Property inPosition;
 
     public Character(User userInfo, BankAccount account, Life life, Job job, ArrayList<Property> properties,
-            Property inPosition, ArrayList<Food> foods) {
+                     Property inPosition) {
         this.userInfo = userInfo;
         this.account = account;
         this.life = life;
@@ -168,7 +169,7 @@ public class Character implements CharacterInterface {
                         System.out.println("Amount : ");
                         float money = floatInput.nextFloat();
 
-                        if (Data.stockMarkets.get(0).withdrawCapital(this.userInfo.getUsername()) == -1){
+                        if (Data.stockMarkets.get(0).withdrawCapital(this.userInfo.getUsername(), money) == -1){
                             System.out.println("User Not Found");
                             this.positionProcessing();
                             break;
@@ -248,7 +249,7 @@ public class Character implements CharacterInterface {
             System.out.println("Property ID : " + chPosition.getPropertyID());
 
             if (chPosition.getOwner() != null) {
-                  if (chPosition.getOwner().equals(this)) {
+                if (chPosition.getOwner().equals(this)) {
                     System.out.println("This is your Property");
                     System.out.printf("\tPrice : %f\n", chPosition.getPrice());
                     System.out.println("Do You Want To Sell It ? (1:YES/2:NO)");
@@ -267,25 +268,25 @@ public class Character implements CharacterInterface {
 
                     Menu.userMenu(this.userInfo);
                 }
-                  else {
-                      System.out.println("This Property Belongs To : " + chPosition.getOwner().getUserInfo().getUsername());
-                      System.out.printf("\tPrice : %f\n", chPosition.getPrice());
-                      System.out.println("Do You Want To Buy It ? (1:YES/2:NO)");
-                      int awnsers = input.nextInt();
-                      while (true) {
-                          if (awnsers == 1) {
-                              Data.municipalities.get(0).buyProperty(chPosition, this, chPosition.getOwner());
-                              break;
-                          } else if (awnsers == 2) {
-                              this.positionProcessing();
-                              break;
-                          } else {
-                              System.out.println("Incorrect Input");
-                          }
-                      }
+                else {
+                    System.out.println("This Property Belongs To : " + chPosition.getOwner().getUserInfo().getUsername());
+                    System.out.printf("\tPrice : %f\n", chPosition.getPrice());
+                    System.out.println("Do You Want To Buy It ? (1:YES/2:NO)");
+                    int awnsers = input.nextInt();
+                    while (true) {
+                        if (awnsers == 1) {
+                            Data.municipalities.get(0).buyProperty(chPosition, this, chPosition.getOwner());
+                            break;
+                        } else if (awnsers == 2) {
+                            this.positionProcessing();
+                            break;
+                        } else {
+                            System.out.println("Incorrect Input");
+                        }
+                    }
 
-                      Menu.userMenu(this.userInfo);
-                  }
+                    Menu.userMenu(this.userInfo);
+                }
             } else if (chPosition.getOwner() == null){
                 System.out.println("You can Buy This Property");
                 System.out.printf("\tPrice : %f\n", chPosition.getPrice());
